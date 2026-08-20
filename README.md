@@ -59,6 +59,73 @@ advice. Have a California attorney read them before relying on them.
 
 ---
 
+## Deploying
+
+The repo is committed on `main` and ready to push. `vercel.json` pins the build
+(Vite → `dist`), sets sensible cache headers on the media in `public/`, and adds
+baseline security headers.
+
+### 1. Push to GitHub
+
+Create an empty repo at [github.com/new](https://github.com/new) — name it
+`aj-construction-inc`, and do **not** let GitHub add a README, .gitignore or
+licence (this repo already has them). Then:
+
+```bash
+git remote add origin https://github.com/<your-username>/aj-construction-inc.git
+git push -u origin main
+```
+
+### 2. Deploy on Vercel
+
+Easiest route, no CLI needed:
+
+1. Go to [vercel.com/new](https://vercel.com/new) and import the repo.
+2. Vercel detects Vite automatically — `vercel.json` already pins
+   `npm run build` and `dist`, so leave the build settings alone.
+3. Deploy.
+
+Every push to `main` redeploys from then on.
+
+<details>
+<summary>CLI alternative</summary>
+
+```bash
+npm i -g vercel
+vercel login
+vercel --prod
+```
+</details>
+
+### 3. Two settings to do straight after the first deploy
+
+**Add the form endpoint.** In Vercel → Project → Settings → Environment
+Variables, add `VITE_FORM_ENDPOINT` with your Formspree URL, then redeploy.
+This is a build-time variable, so it only takes effect on a rebuild. Until it
+is set, the quote form and the assistant fall back to opening the visitor's
+mail client — they work, but they lose people.
+
+**Fix the domain.** Canonical tags, Open Graph URLs, `sitemap.xml`, `robots.txt`
+and the JSON-LD all point at `https://ajconstructionincca.com`. Once the real
+domain is attached in Vercel → Settings → Domains, find and replace it:
+
+```bash
+grep -rl "ajconstructionincca.com" --include="*.html" --include="*.xml" --include="*.txt" --include="*.js" .
+```
+
+Leaving it wrong will not break the site, but search engines will be told the
+canonical version lives somewhere that does not exist.
+
+### Verifying a deploy
+
+`scripts/verify.mjs` takes a base URL, so it runs against production too:
+
+```bash
+npm run verify -- https://your-site.vercel.app
+```
+
+---
+
 ## Adding project photos
 
 The gallery is manifest-driven. Three steps:
