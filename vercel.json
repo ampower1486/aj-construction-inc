@@ -4,13 +4,10 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm install",
-
   "cleanUrls": false,
   "trailingSlash": false,
-
   "headers": [
     {
-      "comment": "Media in public/ keeps stable filenames, so it is NOT content-hashed — a long immutable cache would keep serving an old photo or video after it is replaced. Vite's own hashed output under /assets/*.js|css is left alone so Vercel's default immutable caching still applies to it.",
       "source": "/assets/(gallery|video|logo|og)/(.*)",
       "headers": [
         {
@@ -22,10 +19,22 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=()" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=()"
+        }
       ]
     }
   ]

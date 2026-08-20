@@ -65,6 +65,16 @@ The repo is committed on `main` and ready to push. `vercel.json` pins the build
 (Vite → `dist`), sets sensible cache headers on the media in `public/`, and adds
 baseline security headers.
 
+**A note on `vercel.json`.** The cache rule is scoped to
+`/assets/(gallery|video|logo|og)/` rather than all of `/assets/`. Media copied
+from `public/` keeps stable filenames — it is not content-hashed — so an
+immutable cache would keep serving an old photo or video after you replace it.
+Vite's own hashed `/assets/*.js|css` output is deliberately left alone so
+Vercel's default immutable caching still applies there.
+
+(JSON has no comment syntax, and Vercel's schema rejects unknown properties, so
+this note lives here rather than in the file.)
+
 ### 1. Push to GitHub
 
 Create an empty repo at [github.com/new](https://github.com/new) — name it
