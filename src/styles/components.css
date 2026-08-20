@@ -1,0 +1,1138 @@
+/* ==========================================================================
+   Components — buttons, header, footer, cards, forms
+   ========================================================================== */
+
+/* --- Buttons ------------------------------------------------------------- */
+
+.btn {
+  --btn-bg: var(--navy-800);
+  --btn-fg: #fff;
+  --btn-bd: var(--navy-800);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.85rem;
+  font-family: var(--font-body);
+  font-size: 0.925rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--btn-fg);
+  background: var(--btn-bg);
+  border: 1.5px solid var(--btn-bd);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: transform var(--t-fast) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out),
+    background-color var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out), color var(--t-base) var(--ease-out);
+}
+
+.btn:hover {
+  color: var(--btn-fg);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-xs);
+}
+
+.btn[disabled],
+.btn[aria-disabled='true'] {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.btn--accent {
+  --btn-bg: var(--brick-600);
+  --btn-bd: var(--brick-600);
+}
+
+.btn--accent:hover {
+  --btn-bg: var(--brick-700);
+  --btn-bd: var(--brick-700);
+}
+
+.btn--outline {
+  --btn-bg: transparent;
+  --btn-fg: var(--navy-800);
+  --btn-bd: var(--border-strong);
+}
+
+.btn--outline:hover {
+  --btn-bg: var(--navy-800);
+  --btn-fg: #fff;
+  --btn-bd: var(--navy-800);
+}
+
+.btn--ghost-light {
+  --btn-bg: transparent;
+  --btn-fg: #fff;
+  --btn-bd: rgba(255, 255, 255, 0.55);
+}
+
+.btn--ghost-light:hover {
+  --btn-bg: #fff;
+  --btn-fg: var(--navy-800);
+  --btn-bd: #fff;
+}
+
+.btn--lg {
+  padding: 1.15rem 2.3rem;
+  font-size: 1rem;
+}
+
+.btn--sm {
+  padding: 0.62rem 1.15rem;
+  font-size: 0.83rem;
+}
+
+.btn--full {
+  width: 100%;
+}
+
+.btn svg {
+  flex: none;
+  width: 1.05em;
+  height: 1.05em;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.btn-row--center {
+  justify-content: center;
+}
+
+/* --- Text link with arrow ------------------------------------------------ */
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--navy-700);
+}
+
+.link-arrow svg {
+  width: 1em;
+  height: 1em;
+  transition: transform var(--t-base) var(--ease-out);
+}
+
+.link-arrow:hover svg {
+  transform: translateX(4px);
+}
+
+/* --- Utility bar --------------------------------------------------------- */
+
+/* Pinned above the header so the language toggle is reachable from anywhere on
+   the page, not just the top. Sits one level above the header so the two never
+   overlap on a sub-pixel scroll position. */
+.utility-bar {
+  position: sticky;
+  top: 0;
+  z-index: calc(var(--z-header) + 1);
+  background: var(--navy-950);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.78rem;
+  letter-spacing: 0.015em;
+}
+
+.utility-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  height: var(--utility-h);
+  padding-block: 0.4rem;
+}
+
+.utility-bar__facts {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  /* Never wrap: the bar's height is a fixed offset that the sticky header and
+     every scroll target are positioned against. */
+  flex-wrap: nowrap;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.utility-bar__facts > span {
+  min-width: 0;
+}
+
+.utility-bar__facts span span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.utility-bar__facts span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.utility-bar__facts svg {
+  width: 13px;
+  height: 13px;
+  opacity: 0.75;
+  flex: none;
+}
+
+.utility-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: none;
+}
+
+.utility-bar a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--t-fast) var(--ease-out);
+}
+
+.utility-bar a:hover {
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .utility-bar__facts span:not(.u-keep) {
+    display: none;
+  }
+}
+
+/* --- Language toggle ----------------------------------------------------- */
+
+.lang-toggle {
+  display: inline-flex;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+  flex: none;
+}
+
+.lang-toggle button {
+  padding: 0.2rem 0.66rem;
+  font-size: 0.71rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  color: rgba(255, 255, 255, 0.62);
+  transition: background-color var(--t-fast) var(--ease-out),
+    color var(--t-fast) var(--ease-out);
+}
+
+.lang-toggle button[aria-pressed='true'] {
+  background: var(--brick-600);
+  color: #fff;
+}
+
+.lang-toggle button:hover[aria-pressed='false'] {
+  color: #fff;
+}
+
+
+/* --- Header -------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  /* Pins directly beneath the utility bar, which is pinned at 0. */
+  top: var(--utility-h);
+  z-index: var(--z-header);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: saturate(1.6) blur(12px);
+  -webkit-backdrop-filter: saturate(1.6) blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow var(--t-base) var(--ease-out);
+}
+
+.site-header.is-stuck {
+  box-shadow: var(--shadow-md);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-height: var(--header-h);
+}
+
+/* The logo is the supplied JPEG, used byte-for-byte. Because it sits on a white
+   bar its original white background is invisible, so no editing is needed.
+   The file carries a wide white margin around the artwork (the graphic occupies
+   x 84–943, y 268–774 of the 1024x1024 canvas), so the anchor crops to exactly
+   that box with overflow instead of altering the image. --logo-h is the height
+   of the visible artwork; everything else is derived from it. */
+.brand {
+  --logo-h: 46px;
+  --logo-u: calc(var(--logo-h) / 507); /* one source pixel, in rendered px */
+  display: block;
+  width: calc(860 * var(--logo-u));
+  height: var(--logo-h);
+  overflow: hidden;
+  flex: none;
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.brand img {
+  width: calc(1024 * var(--logo-u));
+  height: calc(1024 * var(--logo-u));
+  max-width: none;
+  margin: calc(-268 * var(--logo-u)) 0 0 calc(-84 * var(--logo-u));
+}
+
+@media (max-width: 900px) {
+  .brand {
+    --logo-h: 38px;
+  }
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.site-nav a {
+  position: relative;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink-600);
+  border-radius: var(--r-sm);
+  transition: color var(--t-fast) var(--ease-out);
+}
+
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.28rem;
+  height: 2px;
+  background: var(--brick-600);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-base) var(--ease-out);
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current='page'] {
+  color: var(--navy-900);
+}
+
+.site-nav a:hover::after,
+.site-nav a[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+/* The nav carries its own CTA for the mobile drawer, where the header button is
+   hidden. On desktop the header button is visible, so this one stays out. */
+.site-nav > .btn {
+  display: none;
+}
+
+.header-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex: none;
+}
+
+.header-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.28rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--navy-800);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.header-phone svg {
+  width: 17px;
+  height: 17px;
+  color: var(--brick-600);
+  flex: none;
+}
+
+.header-phone:hover {
+  color: var(--brick-600);
+}
+
+/* Two numbers, stacked. The 916 line stays full size as the number to call;
+   the 530 sits under it a step smaller and quieter so the hierarchy is obvious
+   at a glance. Right-aligned so both share a clean edge against the CTA. */
+.header-phones {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.05rem;
+  flex: none;
+}
+
+.header-phone-alt {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  color: var(--ink-500);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--t-fast) var(--ease-out);
+}
+
+.header-phone-alt:hover {
+  color: var(--brick-600);
+}
+
+/* Below this the header collapses toward the hamburger — one number only. */
+@media (max-width: 900px) {
+  .header-phone-alt {
+    display: none;
+  }
+}
+
+/* --- Mobile nav ---------------------------------------------------------- */
+
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-sm);
+  color: var(--navy-800);
+  flex: none;
+}
+
+.nav-toggle span {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: background-color var(--t-fast) var(--ease-out);
+}
+
+.nav-toggle span::before,
+.nav-toggle span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform var(--t-base) var(--ease-out);
+}
+
+.nav-toggle span::before {
+  top: -7px;
+}
+
+.nav-toggle span::after {
+  top: 7px;
+}
+
+.nav-toggle[aria-expanded='true'] span {
+  background: transparent;
+}
+
+.nav-toggle[aria-expanded='true'] span::before {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded='true'] span::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 1080px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .header-cta .btn {
+    display: none;
+  }
+
+  /* The drawer below is position:fixed and must size against the viewport.
+     A backdrop-filter on an ancestor would make THIS element its containing
+     block, collapsing the drawer into the height of the header bar — so the
+     frosted effect is dropped at the widths where the drawer exists. */
+  .site-header {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: #fff;
+  }
+
+  /* Lifted above the drawer (z-index 1) so the header bar stays usable while
+     the menu is open. */
+  .brand,
+  .header-cta {
+    position: relative;
+    z-index: 2;
+  }
+
+  .site-nav {
+    position: fixed;
+    /* Covers the whole viewport rather than starting below the header — the
+       header's offset from the top changes as the utility bar scrolls away, so
+       anchoring to it is unreliable.
+       The drawer is a CHILD of the header, so these z-indexes are resolved
+       inside the header's stacking context: the drawer paints above the page
+       (the header as a whole is z-index 100) but below its own siblings, which
+       keeps the logo and the close button clickable on top of it. */
+    inset: 0;
+    z-index: 1;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    /* Clears both pinned bars — the utility bar stays visible above the drawer
+       so the language toggle remains reachable with the menu open. */
+    padding: calc(var(--chrome-h) + var(--space-lg)) var(--gutter) var(--space-2xl);
+    background: #fff;
+    overflow-y: auto;
+    /* Parked with opacity + a vertical nudge, never a horizontal one: this
+       element is position:fixed, so translateX(100%) would sit outside the
+       viewport and add a page-wide horizontal scrollbar that `overflow-x:
+       hidden` on an ancestor cannot clip. */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity var(--t-base) var(--ease-out),
+      transform var(--t-base) var(--ease-out), visibility var(--t-base);
+  }
+
+  .site-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .site-nav a {
+    padding: 1.05rem 0.25rem;
+    font-size: 1.22rem;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+  }
+
+  .site-nav a::after {
+    display: none;
+  }
+
+  .site-nav a[aria-current='page'] {
+    color: var(--brick-600);
+  }
+
+  .site-nav > .btn {
+    display: inline-flex;
+    /* `.site-nav a` is more specific than `.btn`, so restate the button's own
+       foreground or the label renders in the muted nav-link grey. */
+    color: var(--btn-fg);
+    margin-top: var(--space-lg);
+    padding-block: 1.1rem;
+    font-size: 1rem;
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .header-phone span {
+    display: none;
+  }
+
+  .header-phone {
+    width: 42px;
+    height: 42px;
+    justify-content: center;
+    border: 1.5px solid var(--border-strong);
+    border-radius: var(--r-sm);
+  }
+}
+
+/* --- Cards --------------------------------------------------------------- */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  transition: transform var(--t-base) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 18%;
+  bottom: 18%;
+  width: 3px;
+  background: var(--brick-600);
+  border-radius: 0 2px 2px 0;
+  opacity: 0;
+  transform: scaleY(0.4);
+  transition: opacity var(--t-base) var(--ease-out),
+    transform var(--t-base) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+
+.card:hover::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: var(--space-md);
+  color: var(--navy-800);
+  background: var(--sky-100);
+  border-radius: var(--r-sm);
+  flex: none;
+  transition: background-color var(--t-base) var(--ease-out),
+    color var(--t-base) var(--ease-out);
+}
+
+.card__icon svg {
+  width: 27px;
+  height: 27px;
+}
+
+.card:hover .card__icon {
+  background: var(--navy-800);
+  color: #fff;
+}
+
+.card h3 {
+  font-size: var(--step-1);
+  margin-bottom: 0.55rem;
+}
+
+.card p {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* --- Grids --------------------------------------------------------------- */
+
+.grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.grid--2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid--3 {
+  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+}
+
+.grid--4 {
+  grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+}
+
+/* --- Badges / chips ------------------------------------------------------ */
+
+/* Pills must hug their text and wrap. A grid track would stretch each one to
+   the full column width, which reads as a list of buttons rather than tags. */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy-800);
+  background: var(--sky-100);
+  border-radius: var(--r-pill);
+}
+
+.chip svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
+.chip--accent {
+  color: var(--brick-700);
+  background: var(--brick-100);
+}
+
+/* --- Footer -------------------------------------------------------------- */
+
+.site-footer {
+  background: var(--navy-900);
+  color: var(--text-on-dark-muted);
+  font-size: 0.92rem;
+}
+
+.site-footer__main {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.15fr;
+  gap: var(--space-xl) var(--space-lg);
+  padding-block: var(--space-2xl) var(--space-xl);
+}
+
+@media (max-width: 980px) {
+  .site-footer__main {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-footer__main {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+.site-footer h3 {
+  font-size: 0.8rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: var(--space-md);
+}
+
+.site-footer ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.site-footer a {
+  color: var(--text-on-dark-muted);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: #fff;
+}
+
+/* The dark footer is the one place the logo cannot sit on its white JPEG
+   background, so it uses the derived transparent mark instead. */
+.footer-brand__logo {
+  height: 74px;
+  width: auto;
+  margin-bottom: var(--space-md);
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+
+.footer-brand p {
+  max-width: 34ch;
+  line-height: 1.65;
+}
+
+.footer-contact {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.footer-contact a,
+.footer-contact span {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  line-height: 1.5;
+}
+
+.footer-contact svg {
+  width: 15px;
+  height: 15px;
+  margin-top: 0.25rem;
+  color: var(--sky-400);
+  flex: none;
+}
+
+.footer-license {
+  margin-top: var(--space-md);
+  padding: 0.85rem 1rem;
+  font-size: 0.79rem;
+  line-height: 1.5;
+  color: var(--text-on-dark-muted);
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 2px solid var(--sky-500);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+}
+
+.footer-license strong {
+  color: #fff;
+  display: block;
+  letter-spacing: 0.03em;
+}
+
+.social-row {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: var(--space-md);
+}
+
+.social-row a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--r-sm);
+  transition: background-color var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out), transform var(--t-fast) var(--ease-out);
+}
+
+.social-row a:hover {
+  background: var(--brick-600);
+  border-color: var(--brick-600);
+  transform: translateY(-2px);
+}
+
+.social-row svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* --- Conect-R bottom bar -------------------------------------------------
+   Reproduces the bottom bar from vegasbeautylab.com verbatim.
+   ------------------------------------------------------------------------- */
+
+.powered-bar {
+  background-color: #1a1a1a;
+  padding: 1.5rem 0;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.powered-bar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: #a3a3a3;
+  font-family: var(--font-system);
+}
+
+.powered-bar__by {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.powered-bar__chip {
+  background: #fff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+}
+
+.powered-bar__chip img {
+  height: 14px;
+  object-fit: contain;
+  width: auto;
+}
+
+.powered-bar__sep {
+  opacity: 0.3;
+}
+
+.powered-bar__legal {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.powered-bar__legal a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.powered-bar__legal a:hover {
+  color: #fff;
+}
+
+.powered-bar__copy {
+  width: 100%;
+  text-align: center;
+  color: #6f6f6f;
+  font-size: 0.72rem;
+}
+
+/* --- Forms --------------------------------------------------------------- */
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field > label,
+.fieldset__legend {
+  font-size: 0.845rem;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+  color: var(--navy-900);
+}
+
+.field .req {
+  color: var(--brick-600);
+}
+
+.field .hint {
+  font-size: 0.79rem;
+  color: var(--text-muted);
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: 0.82rem 0.95rem;
+  font-size: 0.97rem;
+  color: var(--text);
+  background: #fff;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  transition: border-color var(--t-fast) var(--ease-out),
+    box-shadow var(--t-fast) var(--ease-out);
+}
+
+.textarea {
+  min-height: 128px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.select {
+  appearance: none;
+  padding-right: 2.6rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%235D6D7E' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  background-size: 15px;
+}
+
+.input:hover,
+.textarea:hover,
+.select:hover {
+  border-color: var(--ink-400);
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--navy-800);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sky-500) 28%, transparent);
+}
+
+.input[aria-invalid='true'],
+.textarea[aria-invalid='true'],
+.select[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+.input[aria-invalid='true']:focus,
+.textarea[aria-invalid='true']:focus,
+.select[aria-invalid='true']:focus {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 22%, transparent);
+}
+
+.field__error {
+  display: none;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--danger);
+}
+
+.field__error.is-shown {
+  display: flex;
+}
+
+.field__error svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
+/* Option cards — big tap targets that beat a native radio list on mobile. */
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+  gap: 0.7rem;
+}
+
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.95rem 1rem;
+  background: #fff;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.35;
+  transition: border-color var(--t-fast) var(--ease-out),
+    background-color var(--t-fast) var(--ease-out),
+    box-shadow var(--t-fast) var(--ease-out);
+}
+
+.option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.option__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 50%;
+  flex: none;
+  transition: border-color var(--t-fast) var(--ease-out),
+    background-color var(--t-fast) var(--ease-out);
+}
+
+.option__mark::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  transform: scale(0);
+  transition: transform var(--t-fast) var(--ease-out);
+}
+
+.option:hover {
+  border-color: var(--ink-400);
+  background: var(--paper);
+}
+
+.option:has(input:checked) {
+  border-color: var(--navy-800);
+  background: var(--sky-100);
+  box-shadow: inset 0 0 0 1px var(--navy-800);
+}
+
+.option:has(input:checked) .option__mark {
+  border-color: var(--navy-800);
+  background: var(--navy-800);
+}
+
+.option:has(input:checked) .option__mark::after {
+  transform: scale(1);
+}
+
+.option:has(input:focus-visible) {
+  outline: 3px solid var(--sky-500);
+  outline-offset: 2px;
+}
+
+.option--check .option__mark {
+  border-radius: var(--r-xs);
+}
+
+.option--check .option__mark::after {
+  border-radius: 1px;
+}
+
+/* --- Alerts -------------------------------------------------------------- */
+
+.alert {
+  display: flex;
+  gap: 0.8rem;
+  padding: 1rem 1.15rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  border-radius: var(--r-sm);
+  border-left: 3px solid;
+}
+
+.alert svg {
+  width: 19px;
+  height: 19px;
+  flex: none;
+  margin-top: 0.12rem;
+}
+
+.alert--error {
+  color: #7A1A15;
+  background: #FDECEA;
+  border-color: var(--danger);
+}
+
+.alert--success {
+  color: #12543A;
+  background: #E7F5EF;
+  border-color: var(--success);
+}
+
+.alert--info {
+  color: var(--navy-900);
+  background: var(--sky-100);
+  border-color: var(--steel-600);
+}

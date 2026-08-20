@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!--#include "partials/head.html" -->
+
+  <title>Get a Free Estimate | AJ Construction Inc — Placerville, CA</title>
+  <meta name="description" content="Request a free written estimate from AJ Construction Inc. Five short steps, straight to our project manager. Licensed CSLB #1129358, serving El Dorado County and Greater Sacramento." />
+  <link rel="canonical" href="https://ajconstructionincca.com/quote.html" />
+
+  <meta property="og:title" content="Get a Free Estimate | AJ Construction Inc" />
+  <meta property="og:description" content="Five short steps and your project details go straight to our project manager. Free written estimates." />
+  <meta property="og:url" content="https://ajconstructionincca.com/quote.html" />
+
+  <!--#include "partials/schema.html" -->
+  <script type="module" src="/src/main.js"></script>
+</head>
+
+<body data-page="quote">
+  <!--#include "partials/header.html" -->
+
+  <main id="main">
+
+    <section class="page-hero">
+      <div class="container page-hero__inner">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/" data-i18n="nav.home">Home</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.2 5.4 6.6 6.6-6.6 6.6"/></svg>
+          <span data-i18n="nav.quote">Get a Quote</span>
+        </nav>
+        <h1 data-i18n="qp.h1">Get a free estimate</h1>
+        <p class="lede" data-i18n="qp.lede">
+          Five short steps. Your details go straight to our project manager, and we usually have a
+          walkthrough scheduled within one business day.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="quote-layout">
+
+          <!-- ==================== FORM ==================== -->
+          <div>
+            <div class="quote-card">
+              <div id="form-status" hidden></div>
+
+              <form id="quote-form" novalidate>
+                <!-- Honeypot: real people never see or fill this. -->
+                <div class="hp-field" aria-hidden="true">
+                  <label for="_company">Company</label>
+                  <input type="text" id="_company" name="_company" tabindex="-1" autocomplete="off" />
+                </div>
+
+                <div class="progress">
+                  <div class="progress__meta">
+                    <span>
+                      <span data-i18n="qp.step">Step</span>
+                      <em id="progress-now">1</em>
+                      <span data-i18n="qp.of">of</span>
+                      <em id="progress-total">5</em>
+                    </span>
+                    <span id="progress-label" data-i18n="qp.s1.title">What are you building?</span>
+                  </div>
+                  <div class="progress__track">
+                    <div class="progress__bar" id="progress-bar"></div>
+                  </div>
+                </div>
+
+                <!-- ---------- STEP 1 ---------- -->
+                <div class="step is-active" data-label="qp.s1.title">
+                  <div class="step__head">
+                    <h2 data-i18n="qp.s1.title">What are you building?</h2>
+                    <p data-i18n="qp.s1.body">Pick the closest match &mdash; we can refine it later.</p>
+                  </div>
+
+                  <fieldset class="fieldset" data-required-group="projectType">
+                    <legend class="visually-hidden" data-i18n="lead.projectType">Project</legend>
+                    <div class="option-grid">
+                      <label class="option"><input type="radio" name="projectType" value="Kitchen Remodeling" data-service="kitchen" /><span class="option__mark"></span><span data-i18n="svc.kitchen">Kitchen Remodeling</span></label>
+                      <label class="option"><input type="radio" name="projectType" value="Bathroom Remodeling" data-service="bathroom" /><span class="option__mark"></span><span data-i18n="svc.bathroom">Bathroom Remodeling</span></label>
+                      <label class="option"><input type="radio" name="projectType" value="Whole-Home Remodel" data-service="whole-home" /><span class="option__mark"></span><span data-i18n="svc.wholeHome">Whole-Home Remodel</span></label>
+                      <label class="option"><input type="radio" name="projectType" value="Home Addition" data-service="addition" /><span class="option__mark"></span><span data-i18n="svc.addition">Home Addition</span></label>
+                      <label class="option"><input type="radio" name="projectType" value="New Build" data-service="new-build" /><span class="option__mark"></span><span data-i18n="svc.newBuild">New Build</span></label>
+                      <label class="option"><input type="radio" name="projectType" value="Deck / Outdoor Living" data-service="deck" /><span class="option__mark"></span><span data-i18n="svc.deck">Deck / Outdoor Living</span></label>
+                      <label class="option"><input type="radio" name="projectType" value="Concrete" data-service="concrete" /><span class="option__mark"></span><span data-i18n="svc.concrete">Concrete</span></label>
+                      <label class="option"><input type="radio" name="projectType" value="Roofing" data-service="roofing" /><span class="option__mark"></span><span data-i18n="svc.roofing">Roofing</span></label>
+                      <label class="option"><input type="radio" name="projectType" value="Flooring" data-service="flooring" /><span class="option__mark"></span><span data-i18n="svc.flooring">Flooring</span></label>
+                      <label class="option"><input type="radio" name="projectType" value="Tile" data-service="tile" /><span class="option__mark"></span><span data-i18n="svc.tile">Tile</span></label>
+                      <label class="option"><input type="radio" name="projectType" value="Drywall" data-service="drywall" /><span class="option__mark"></span><span data-i18n="svc.drywall">Drywall</span></label>
+                      <label class="option"><input type="radio" name="projectType" value="Painting" data-service="painting" /><span class="option__mark"></span><span data-i18n="svc.painting">Painting</span></label>
+                      <label class="option"><input type="radio" name="projectType" value="Electrical" data-service="electrical" /><span class="option__mark"></span><span data-i18n="svc.electrical">Electrical</span></label>
+                      <label class="option"><input type="radio" name="projectType" value="Repair" data-service="repair" /><span class="option__mark"></span><span data-i18n="svc.repair">Repair</span></label>
+                      <label class="option"><input type="radio" name="projectType" value="Something else" data-service="other" /><span class="option__mark"></span><span data-i18n="svc.other">Something else</span></label>
+                    </div>
+                    <p class="field__error"></p>
+                  </fieldset>
+
+                  <div class="form-nav">
+                    <button class="btn" type="button" data-step-next data-i18n="qp.next">Continue</button>
+                  </div>
+                </div>
+
+                <!-- ---------- STEP 2 ---------- -->
+                <div class="step" data-label="qp.s2.title">
+                  <div class="step__head">
+                    <h2 data-i18n="qp.s2.title">Tell us about the project</h2>
+                    <p data-i18n="qp.s2.body">The more we know, the more accurate the estimate.</p>
+                  </div>
+
+                  <fieldset class="fieldset" data-required-group="propertyType">
+                    <legend class="fieldset__legend" data-i18n="qp.propertyType">Property type</legend>
+                    <div class="option-grid">
+                      <label class="option"><input type="radio" name="propertyType" value="My own home" /><span class="option__mark"></span><span data-i18n="chat.o.ownHome">My own home</span></label>
+                      <label class="option"><input type="radio" name="propertyType" value="A rental property" /><span class="option__mark"></span><span data-i18n="chat.o.rental">A rental property</span></label>
+                      <label class="option"><input type="radio" name="propertyType" value="Commercial" /><span class="option__mark"></span><span data-i18n="chat.o.commercial">Commercial</span></label>
+                    </div>
+                    <p class="field__error"></p>
+                  </fieldset>
+
+                  <div class="field">
+                    <label for="details" data-i18n="qp.details">Project details</label>
+                    <span class="hint" data-i18n="qp.detailsHint">Age of the house, what is going wrong, rough dimensions, what you have already tried &mdash; whatever helps.</span>
+                    <textarea class="textarea" id="details" name="details"
+                              data-i18n-attr="placeholder:qp.detailsPlaceholder"
+                              placeholder="Tell us what is going on…"></textarea>
+                  </div>
+
+                  <div class="field">
+                    <label for="city" data-i18n="qp.city">City <span class="req">*</span></label>
+                    <input class="input" type="text" id="city" name="city" autocomplete="address-level2"
+                           data-validate="required"
+                           data-i18n-attr="placeholder:qp.cityPlaceholder" placeholder="Placerville" />
+                    <p class="field__error"></p>
+                  </div>
+
+                  <div class="form-nav">
+                    <button class="btn btn--outline" type="button" data-step-prev data-i18n="qp.back">Back</button>
+                    <button class="btn" type="button" data-step-next data-i18n="qp.next">Continue</button>
+                  </div>
+                </div>
+
+                <!-- ---------- STEP 3 ---------- -->
+                <div class="step" data-label="qp.s3.title">
+                  <div class="step__head">
+                    <h2 data-i18n="qp.s3.title">Timing and budget</h2>
+                    <p data-i18n="qp.s3.body">This helps us bring the right options to the walkthrough.</p>
+                  </div>
+
+                  <fieldset class="fieldset" data-required-group="timeline">
+                    <legend class="fieldset__legend" data-i18n="qp.timeline">When would you like to start?</legend>
+                    <div class="option-grid">
+                      <label class="option"><input type="radio" name="timeline" value="As soon as possible" /><span class="option__mark"></span><span data-i18n="chat.o.asap">As soon as possible</span></label>
+                      <label class="option"><input type="radio" name="timeline" value="Within a month" /><span class="option__mark"></span><span data-i18n="chat.o.month">Within a month</span></label>
+                      <label class="option"><input type="radio" name="timeline" value="1-3 months" /><span class="option__mark"></span><span data-i18n="chat.o.quarter">1&ndash;3 months</span></label>
+                      <label class="option"><input type="radio" name="timeline" value="3-6 months" /><span class="option__mark"></span><span data-i18n="chat.o.halfYear">3&ndash;6 months</span></label>
+                      <label class="option"><input type="radio" name="timeline" value="Just planning for now" /><span class="option__mark"></span><span data-i18n="chat.o.planning">Just planning for now</span></label>
+                    </div>
+                    <p class="field__error"></p>
+                  </fieldset>
+
+                  <fieldset class="fieldset" data-required-group="budgetBand">
+                    <legend class="fieldset__legend" data-i18n="qp.budget">Budget range</legend>
+                    <span class="hint" data-i18n="qp.budgetHint">Just so we know where to aim &mdash; it is not a commitment.</span>
+                    <div class="option-grid">
+                      <label class="option"><input type="radio" name="budgetBand" value="Under $5,000" /><span class="option__mark"></span><span data-i18n="chat.o.b1">Under $5,000</span></label>
+                      <label class="option"><input type="radio" name="budgetBand" value="$5,000 - $15,000" /><span class="option__mark"></span><span data-i18n="chat.o.b2">$5,000 &ndash; $15,000</span></label>
+                      <label class="option"><input type="radio" name="budgetBand" value="$15,000 - $40,000" /><span class="option__mark"></span><span data-i18n="chat.o.b3">$15,000 &ndash; $40,000</span></label>
+                      <label class="option"><input type="radio" name="budgetBand" value="$40,000 - $100,000" /><span class="option__mark"></span><span data-i18n="chat.o.b4">$40,000 &ndash; $100,000</span></label>
+                      <label class="option"><input type="radio" name="budgetBand" value="$100,000+" /><span class="option__mark"></span><span data-i18n="chat.o.b5">$100,000+</span></label>
+                      <label class="option"><input type="radio" name="budgetBand" value="Not sure yet" /><span class="option__mark"></span><span data-i18n="chat.o.bUnsure">Not sure yet</span></label>
+                    </div>
+                    <p class="field__error"></p>
+                  </fieldset>
+
+                  <div class="form-nav">
+                    <button class="btn btn--outline" type="button" data-step-prev data-i18n="qp.back">Back</button>
+                    <button class="btn" type="button" data-step-next data-i18n="qp.next">Continue</button>
+                  </div>
+                </div>
+
+                <!-- ---------- STEP 4 ---------- -->
+                <div class="step" data-label="qp.s4.title">
+                  <div class="step__head">
+                    <h2 data-i18n="qp.s4.title">How do we reach you?</h2>
+                    <p data-i18n="qp.s4.body">Only what we need to get the walkthrough booked.</p>
+                  </div>
+
+                  <div class="field-row">
+                    <div class="field">
+                      <label for="name" data-i18n="qp.name">Full name <span class="req">*</span></label>
+                      <input class="input" type="text" id="name" name="name" autocomplete="name" data-validate="name" />
+                      <p class="field__error"></p>
+                    </div>
+                    <div class="field">
+                      <label for="phone" data-i18n="qp.phone">Phone <span class="req">*</span></label>
+                      <input class="input" type="tel" id="phone" name="phone" autocomplete="tel"
+                             inputmode="tel" data-format="phone" data-validate="phone"
+                             placeholder="(916) 555-0123" />
+                      <p class="field__error"></p>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="email" data-i18n="qp.email">Email</label>
+                    <span class="hint" data-i18n="qp.emailHint">Optional, but it lets us send the written estimate straight over.</span>
+                    <input class="input" type="email" id="email" name="email" autocomplete="email"
+                           inputmode="email" data-validate="email" placeholder="you@example.com" />
+                    <p class="field__error"></p>
+                  </div>
+
+                  <fieldset class="fieldset" data-required-group="contactPreference">
+                    <legend class="fieldset__legend" data-i18n="qp.contactPref">How would you rather we get back to you?</legend>
+                    <div class="option-grid">
+                      <label class="option"><input type="radio" name="contactPreference" value="Call" /><span class="option__mark"></span><span data-i18n="chat.o.prefCall">Call me</span></label>
+                      <label class="option"><input type="radio" name="contactPreference" value="Text" /><span class="option__mark"></span><span data-i18n="chat.o.prefText">Text me</span></label>
+                      <label class="option"><input type="radio" name="contactPreference" value="Email" /><span class="option__mark"></span><span data-i18n="chat.o.prefEmail">Email me</span></label>
+                    </div>
+                    <p class="field__error"></p>
+                  </fieldset>
+
+                  <div class="form-nav">
+                    <button class="btn btn--outline" type="button" data-step-prev data-i18n="qp.back">Back</button>
+                    <button class="btn" type="button" data-step-next data-i18n="qp.next">Continue</button>
+                  </div>
+                </div>
+
+                <!-- ---------- STEP 5 ---------- -->
+                <div class="step" data-label="qp.s5.title" data-review="true">
+                  <div class="step__head">
+                    <h2 data-i18n="qp.s5.title">Review and send</h2>
+                    <p data-i18n="qp.s5.body">Have a quick look before it goes over.</p>
+                  </div>
+
+                  <dl class="review-list" id="review-list"></dl>
+
+                  <div class="form-nav">
+                    <button class="btn btn--outline" type="button" data-step-prev data-i18n="qp.back">Back</button>
+                    <button class="btn btn--accent" type="submit" data-submit data-i18n="qp.submit">Send to the project manager</button>
+                  </div>
+                </div>
+              </form>
+
+              <!-- ---------- SUCCESS ---------- -->
+              <div id="quote-success" hidden>
+                <div class="alert alert--success" style="margin-bottom:var(--space-lg)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.2 12.2 2.6 2.6 5-5.4"/></svg>
+                  <span>
+                    <h2 style="font-size:var(--step-2);margin-bottom:.25rem" data-i18n="qp.successTitle">Got it &mdash; thank you.</h2>
+                    <span data-i18n="qp.successBody">Our project manager has your details and will be in touch, usually within one business day. Here is what we sent:</span>
+                  </span>
+                </div>
+
+                <dl class="review-list" id="success-summary"></dl>
+
+                <p style="margin-top:var(--space-md);font-size:.92rem;color:var(--text-muted)" data-i18n="qp.successUrgent">
+                  Need it sooner? Call us directly on (916) 532-3015 &mdash; we are open 24/7.
+                </p>
+
+                <div class="btn-row" style="margin-top:var(--space-lg)">
+                  <a class="btn" href="/gallery.html" data-i18n="work.cta">View the full gallery</a>
+                  <a class="btn btn--outline" href="/" data-i18n="nav.home">Home</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==================== SIDEBAR ==================== -->
+          <aside>
+            <div class="side-card side-card--dark">
+              <h3 data-i18n="qp.sideTitle">Rather talk to somebody</h3>
+              <p data-i18n="qp.sideBody">Happy to. One of the owners answers.</p>
+
+              <div class="contact-direct">
+                <a href="tel:+19165323015">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.3 3.5h3l1.5 3.8-1.9 1.4a11.3 11.3 0 0 0 5.4 5.4l1.4-1.9 3.8 1.5v3a1.8 1.8 0 0 1-2 1.8A16.5 16.5 0 0 1 4.5 5.5a1.8 1.8 0 0 1 1.8-2Z"/></svg>
+                  <span>(916) 532-3015</span>
+                </a>
+                <a href="tel:+15305037343">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.3 3.5h3l1.5 3.8-1.9 1.4a11.3 11.3 0 0 0 5.4 5.4l1.4-1.9 3.8 1.5v3a1.8 1.8 0 0 1-2 1.8A16.5 16.5 0 0 1 4.5 5.5a1.8 1.8 0 0 1 1.8-2Z"/></svg>
+                  <span>(530) 503-7343</span>
+                </a>
+                <a href="mailto:aj.construction.inc2@gmail.com">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="5" width="18.4" height="14" rx="1.8"/><path d="m3.4 6.4 8.6 6 8.6-6"/></svg>
+                  <span>aj.construction.inc2@gmail.com</span>
+                </a>
+              </div>
+
+              <p style="margin-top:var(--space-md);font-size:.85rem" data-i18n="qp.chatInstead">Prefer to answer in a chat?</p>
+              <button class="btn btn--ghost-light btn--sm btn--full" type="button" data-chat-open style="margin-top:.5rem" data-i18n="qp.chatBtn">Use the assistant</button>
+            </div>
+
+            <div class="side-card side-card--tint">
+              <h3 data-i18n="qp.sideExpect">What happens next</h3>
+              <ul>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.2 12.2 2.6 2.6 5-5.4"/></svg>
+                  <span data-i18n="qp.e1">We get back to you, usually within one business day.</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.2 12.2 2.6 2.6 5-5.4"/></svg>
+                  <span data-i18n="qp.e2">We book a free walkthrough at your property.</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.2 12.2 2.6 2.6 5-5.4"/></svg>
+                  <span data-i18n="qp.e3">You get an itemised written scope and price.</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="m8.2 12.2 2.6 2.6 5-5.4"/></svg>
+                  <span data-i18n="qp.e4">No pressure and no cost until you decide.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="side-card side-card--tint">
+              <h3 data-i18n="footer.licenceNum">CSLB Licence #1129358</h3>
+              <p style="font-size:.88rem;color:var(--text-muted)" data-i18n="footer.licenceDetail">
+                Class B General Building Contractor &middot; Bonded $25,000
+              </p>
+              <p style="margin-top:.75rem">
+                <a class="link-arrow" href="https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=1129358" target="_blank" rel="noopener noreferrer">
+                  <span data-i18n="st.credCta">Verify us on the CSLB website</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12h15"/><path d="m13.2 5.7 6.3 6.3-6.3 6.3"/></svg>
+                </a>
+              </p>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!--#include "partials/footer.html" -->
+</body>
+</html>

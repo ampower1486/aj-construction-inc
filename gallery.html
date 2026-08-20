@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!--#include "partials/head.html" -->
+
+  <title>Project Gallery | AJ Construction Inc — Placerville, CA</title>
+  <meta name="description" content="Real projects built by AJ Construction in Placerville and El Dorado County — decks, concrete flatwork, walkways and exterior construction. Our own photos, our own work." />
+  <link rel="canonical" href="https://ajconstructionincca.com/gallery.html" />
+
+  <meta property="og:title" content="Project Gallery | AJ Construction Inc" />
+  <meta property="og:description" content="Decks, concrete and exterior work built by our crew in the El Dorado County foothills. No stock photography." />
+  <meta property="og:url" content="https://ajconstructionincca.com/gallery.html" />
+
+  <!--#include "partials/schema.html" -->
+  <script type="module" src="/src/main.js"></script>
+</head>
+
+<body data-page="gallery">
+  <!--#include "partials/header.html" -->
+
+  <main id="main">
+
+    <section class="page-hero">
+      <div class="container page-hero__inner">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/" data-i18n="nav.home">Home</a>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.2 5.4 6.6 6.6-6.6 6.6"/></svg>
+          <span data-i18n="nav.gallery">Gallery</span>
+        </nav>
+        <h1 data-i18n="nav.gallery">Gallery</h1>
+        <p class="lede" data-i18n="gp.lede">
+          Real jobs our crew built in and around Placerville. We add to this as projects finish
+          &mdash; if you want to see something closer to what you have in mind, ask and we will send it over.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="filter-bar" id="gallery-filters" role="group" aria-label="Filter projects by category"></div>
+
+        <div class="gallery-grid" id="gallery-grid"></div>
+        <p class="gallery-empty" id="gallery-empty" hidden data-i18n="gal.empty">No projects in this category yet.</p>
+
+        <noscript>
+          <p class="gallery-empty" data-i18n="gp.noscript">
+            Enable JavaScript to browse the project gallery, or call (916) 532-3015 and we will send
+            photos of work like yours directly.
+          </p>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- ============ VIDEO ============ -->
+    <section class="section section--tint">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow" data-i18n="gp.videoEyebrow">On Site</span>
+          <h2 data-i18n="gp.videoTitle">On the job</h2>
+          <p class="lede" data-i18n="gp.videoLede">
+            Short clips from our Facebook page. Tap to play &mdash; nothing from Facebook loads until you ask for it.
+          </p>
+        </div>
+
+        <div class="video-grid" data-reveal>
+          <div class="video-card" data-reel="978269071831181">
+            <picture>
+              <source srcset="/assets/gallery/concrete-slab-fence-thumb.webp" type="image/webp" />
+              <img src="/assets/gallery/concrete-slab-fence-thumb.jpg" alt="Still frame from a project video showing a finished concrete slab" width="450" height="800" loading="lazy" decoding="async" />
+            </picture>
+            <button class="video-card__play" type="button">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(255,255,255,.16)" stroke="#fff" stroke-width="1.3"/><path d="M9.8 8.2 16 12l-6.2 3.8Z" fill="#fff"/></svg>
+              <span data-i18n="gp.watch">Watch video</span>
+            </button>
+          </div>
+
+          <div class="video-card" data-reel="1336599275054948">
+            <picture>
+              <source srcset="/assets/gallery/deck-walkway-complete-thumb.webp" type="image/webp" />
+              <img src="/assets/gallery/deck-walkway-complete-thumb.jpg" alt="Still frame from a project video showing a completed deck and walkway" width="800" height="800" loading="lazy" decoding="async" />
+            </picture>
+            <button class="video-card__play" type="button">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(255,255,255,.16)" stroke="#fff" stroke-width="1.3"/><path d="M9.8 8.2 16 12l-6.2 3.8Z" fill="#fff"/></svg>
+              <span data-i18n="gp.watch">Watch video</span>
+            </button>
+          </div>
+        </div>
+
+        <p style="margin-top:var(--space-lg);font-size:.9rem;color:var(--text-muted)">
+          <a href="https://www.facebook.com/profile.php?id=61590028926285" target="_blank" rel="noopener noreferrer" data-i18n="gp.fbLink">See more on our Facebook page</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container cta-band__inner">
+        <div data-reveal>
+          <h2 data-i18n="gp.ctaTitle">Want something like this at your place?</h2>
+          <p data-i18n="gp.ctaBody">
+            Tell us what you have in mind and we will put a written estimate together, free.
+          </p>
+        </div>
+        <div class="btn-row" data-reveal data-reveal-delay="90">
+          <a class="btn btn--accent btn--lg" href="/quote.html" data-i18n="cta.primary">Get My Free Estimate</a>
+          <a class="btn btn--ghost-light btn--lg" href="tel:+19165323015">(916) 532-3015</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!--#include "partials/footer.html" -->
+</body>
+</html>

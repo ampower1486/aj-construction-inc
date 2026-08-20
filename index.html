@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!--#include "partials/head.html" -->
+
+  <title>AJ Construction Inc | General Contractor in Placerville, CA</title>
+  <meta name="description" content="Family-owned general contractor in Placerville, CA serving all of Northern California. Remodels, bathrooms, kitchens, additions, decks, concrete, roofing and electrical. Licensed CSLB #1129358, bonded, free written estimates." />
+  <link rel="canonical" href="https://ajconstructionincca.com/" />
+
+  <meta property="og:title" content="AJ Construction Inc | General Contractor in Placerville, CA" />
+  <meta property="og:description" content="A father, his two sons, and one crew. Licensed CSLB #1129358 and bonded. Free written estimates across El Dorado County, Greater Sacramento and Northern California." />
+  <meta property="og:url" content="https://ajconstructionincca.com/" />
+
+  <!--#include "partials/schema.html" -->
+
+  <!--#reel-start-->
+  <!-- Decided before the first paint: if the reel is about to autoplay, the
+       headline must already be hidden, or it flashes on screen and is then
+       yanked away. main.js runs too late for that, hence the inline script.
+       A failsafe returns the headline if the module never loads.
+       This block and the reel markup are stripped at build time when there is
+       no video file — see vite.config.js. -->
+  <style>
+    html.reel-pending .hero__copy { opacity: 0; }
+  </style>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('aj:reel-seen')) return;
+      } catch (e) {
+        return; // storage blocked — never withhold the headline
+      }
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var c = navigator.connection;
+      if (c && (c.saveData || /(^|-)2g$/.test(c.effectiveType || ''))) return;
+
+      var r = document.documentElement;
+      r.classList.add('reel-pending');
+      // If main.js never arrives, give the hero back rather than leaving a
+      // permanently blank headline.
+      setTimeout(function () { r.classList.remove('reel-pending'); }, 5000);
+    })();
+  </script>
+  <!--#reel-end-->
+
+  <script type="module" src="/src/main.js"></script>
+</head>
+
+<body data-page="home">
+  <!--#include "partials/header.html" -->
+
+  <main id="main">
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero">
+      <div class="hero__media">
+        <picture>
+          <source srcset="/assets/gallery/deck-walkway-complete.webp" type="image/webp" />
+          <img src="/assets/gallery/deck-walkway-complete.jpg"
+               alt="A completed deck and concrete walkway built by AJ Construction on a foothill property near Placerville, California"
+               width="1800" height="1800" fetchpriority="high" decoding="async" />
+        </picture>
+      </div>
+      <div class="hero__scrim"></div>
+
+      <!--#reel-start-->
+      <!-- Square frame centred in the hero. preload="none" means the file is
+           only fetched when it is actually going to play, so a returning
+           visitor who never presses replay downloads nothing. -->
+      <div class="hero__reel" id="hero-reel">
+        <video class="hero__reel-video" src="/assets/video/intro.mp4"
+               muted playsinline preload="none"
+               aria-label="AJ Construction Inc introduction"></video>
+        <span class="hero__reel-progress"></span>
+      </div>
+      <!--#reel-end-->
+
+      <div class="container hero__inner">
+       <div class="hero__copy" id="hero-copy">
+        <span class="hero__eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.7 4.6 5.6v5.7c0 4.7 3.1 8.6 7.4 10 4.3-1.4 7.4-5.3 7.4-10V5.6Z"/><path d="m8.7 11.9 2.4 2.4 4.2-4.6"/></svg>
+          <span data-i18n="hero.eyebrow">Placerville, California &middot; CSLB #1129358</span>
+        </span>
+
+        <h1 data-i18n-html="hero.title">Built by family.<br /><em>Backed by a licence.</em></h1>
+
+        <p class="hero__lede" data-i18n="hero.lede">
+          AJ Construction Inc is a family-owned general contractor in Placerville. A father, his
+          two sons, and one crew that carries your project from demolition to the final
+          walkthrough &mdash; no revolving door of subcontractors, no surprise line items, and
+          nobody to chase for an answer.
+        </p>
+
+        <div class="btn-row">
+          <a class="btn btn--accent btn--lg" href="/quote.html" data-i18n="hero.ctaPrimary">Get My Free Estimate</a>
+          <a class="btn btn--ghost-light btn--lg" href="tel:+19165323015">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.3 3.5h3l1.5 3.8-1.9 1.4a11.3 11.3 0 0 0 5.4 5.4l1.4-1.9 3.8 1.5v3a1.8 1.8 0 0 1-2 1.8A16.5 16.5 0 0 1 4.5 5.5a1.8 1.8 0 0 1 1.8-2Z"/></svg>
+            <span>(916) 532-3015</span>
+          </a>
+        </div>
+
+        <div class="hero__proof">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12.6 4.8 4.8L19.5 7.2"/></svg>
+            <span data-i18n="hero.proof1">Licensed &amp; bonded</span>
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12.6 4.8 4.8L19.5 7.2"/></svg>
+            <span data-i18n="hero.proof2">Free written estimates</span>
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12.6 4.8 4.8L19.5 7.2"/></svg>
+            <span data-i18n="hero.proof3">Residential &amp; commercial</span>
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 12.6 4.8 4.8L19.5 7.2"/></svg>
+            <span data-i18n="hero.proof4">Se habla espa&ntilde;ol</span>
+          </span>
+        </div>
+
+        <!--#reel-start-->
+        <button class="hero__replay" id="hero-replay" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.4 12a8.6 8.6 0 1 1 2.5 6.1"/><path d="M3.2 19.4v-5.2h5.2"/></svg>
+          <span data-i18n="hero.replay">Watch the intro</span>
+        </button>
+        <!--#reel-end-->
+       </div>
+      </div>
+    </section>
+
+    <!-- ==================== TRUST STRIP ==================== -->
+    <section class="trust-strip" aria-label="Credentials">
+      <div class="container">
+        <div class="trust-strip__inner">
+          <div class="trust-strip__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9.4" r="5.4"/><path d="m9 14.1-1.3 6.4L12 18.4l4.3 2.1L15 14.1"/><path d="m10.2 9.3 1.3 1.4 2.4-2.6"/></svg>
+            <span>
+              <strong data-i18n="trust.1.value">13+ Years</strong>
+              <span data-i18n="trust.1.label">On the tools</span>
+            </span>
+          </div>
+          <div class="trust-strip__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.7 4.6 5.6v5.7c0 4.7 3.1 8.6 7.4 10 4.3-1.4 7.4-5.3 7.4-10V5.6Z"/><path d="m8.7 11.9 2.4 2.4 4.2-4.6"/></svg>
+            <span>
+              <strong data-i18n="trust.2.value">#1129358</strong>
+              <span data-i18n="trust.2.label">CSLB Class B licence</span>
+            </span>
+          </div>
+          <div class="trust-strip__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2.9H7.2a1.9 1.9 0 0 0-1.9 1.9v14.4a1.9 1.9 0 0 0 1.9 1.9h9.6a1.9 1.9 0 0 0 1.9-1.9V7.6Z"/><path d="M14 2.9v4.7h4.7"/><path d="M8.6 12.6h6.8M8.6 16.2h4.4"/></svg>
+            <span>
+              <strong data-i18n="trust.3.value">$25,000</strong>
+              <span data-i18n="trust.3.label">Surety bond</span>
+            </span>
+          </div>
+          <div class="trust-strip__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="M12 6.8V12l3.4 2"/></svg>
+            <span>
+              <strong data-i18n="trust.4.value">Open 24/7</strong>
+              <span data-i18n="trust.4.label">Call any time</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== WHY AJ ==================== -->
+    <section class="section">
+      <div class="container">
+        <div class="split">
+          <div class="split__media" data-reveal>
+            <picture>
+              <source srcset="/assets/gallery/wraparound-deck-complete.webp" type="image/webp" />
+              <img src="/assets/gallery/wraparound-deck-complete.jpg"
+                   alt="A finished wrap-around deck with white railing and stairs on a two-storey home built by AJ Construction"
+                   width="1500" height="1500" loading="lazy" decoding="async" />
+            </picture>
+          </div>
+
+          <div class="split__body" data-reveal data-reveal-delay="90">
+            <span class="eyebrow" data-i18n="why.eyebrow">Why AJ Construction</span>
+            <h2 data-i18n="why.title">Anybody can quote low. Fewer can finish.</h2>
+            <p data-i18n="why.body">
+              Most of the horror stories homeowners tell come down to the same four things: a crew
+              that changes every week, an owner who disappears after the deposit, a price that moves,
+              and a licence nobody checked. We built this company to be the opposite of that.
+            </p>
+
+            <ul class="feature-list">
+              <li>
+                <span class="feature-list__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.4 11.2a2.9 2.9 0 1 0 0-5.8 2.9 2.9 0 0 0 0 5.8Z"/><path d="M2.8 19.4a5.6 5.6 0 0 1 11.2 0"/><path d="M16.4 11a2.6 2.6 0 1 0-1.6-4.7"/><path d="M16.9 14.2a5.1 5.1 0 0 1 4.3 5.2"/></svg></span>
+                <span>
+                  <strong data-i18n="why.1.title">One crew, every trade</strong>
+                  <p data-i18n="why.1.body">We self-perform framing, drywall, tile, flooring, concrete and electrical. Fewer hand-offs means fewer delays &mdash; and one company accountable for all of it.</p>
+                </span>
+              </li>
+              <li>
+                <span class="feature-list__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.4 17.2h17.2"/><path d="M5.6 15.4v-2.6a6.4 6.4 0 0 1 12.8 0v2.6"/><path d="M9.9 9.4V5.8a1.3 1.3 0 0 1 1.3-1.3h1.6a1.3 1.3 0 0 1 1.3 1.3v3.6"/></svg></span>
+                <span>
+                  <strong data-i18n="why.2.title">The owners are on your job site</strong>
+                  <p data-i18n="why.2.body">You are hiring a family, not a call centre. The people who walk your property and write your estimate are the same people running the work.</p>
+                </span>
+              </li>
+              <li>
+                <span class="feature-list__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2.9H7.2a1.9 1.9 0 0 0-1.9 1.9v14.4a1.9 1.9 0 0 0 1.9 1.9h9.6a1.9 1.9 0 0 0 1.9-1.9V7.6Z"/><path d="M14 2.9v4.7h4.7"/><path d="M8.6 12.6h6.8M8.6 16.2h4.4"/></svg></span>
+                <span>
+                  <strong data-i18n="why.3.title">The scope is written down first</strong>
+                  <p data-i18n="why.3.body">Work, materials and price go in writing before anyone lifts a tool. If something genuinely changes, you approve it before it happens &mdash; not on the final invoice.</p>
+                </span>
+              </li>
+              <li>
+                <span class="feature-list__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.7 4.6 5.6v5.7c0 4.7 3.1 8.6 7.4 10 4.3-1.4 7.4-5.3 7.4-10V5.6Z"/><path d="m8.7 11.9 2.4 2.4 4.2-4.6"/></svg></span>
+                <span>
+                  <strong data-i18n="why.4.title">Licensed, bonded, easy to verify</strong>
+                  <p data-i18n="why.4.body">CSLB #1129358, Class B General Building, active and bonded to $25,000. Do not take our word for it &mdash; <a href="https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=1129358" target="_blank" rel="noopener noreferrer">look it up on the state board</a>.</p>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROCESS ==================== -->
+    <section class="section section--dark">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow" data-i18n="proc.eyebrow">How It Works</span>
+          <h2 data-i18n="proc.title">Four steps, no mystery</h2>
+          <p class="lede" data-i18n="proc.lede">
+            You should know what happens next at every point in the job. This is the whole process.
+          </p>
+        </div>
+
+        <div class="process">
+          <div class="process__step" data-reveal>
+            <h3 data-i18n="proc.1.title">We walk it with you</h3>
+            <p data-i18n="proc.1.body">One of the owners comes out, looks at the actual conditions, and listens to what you are trying to end up with. Free, and no pressure to sign anything.</p>
+          </div>
+          <div class="process__step" data-reveal data-reveal-delay="80">
+            <h3 data-i18n="proc.2.title">You get it in writing</h3>
+            <p data-i18n="proc.2.body">A written scope and estimate covering the work, the materials and the price &mdash; itemised, so you can see exactly what you are paying for.</p>
+          </div>
+          <div class="process__step" data-reveal data-reveal-delay="160">
+            <h3 data-i18n="proc.3.title">We build it</h3>
+            <p data-i18n="proc.3.body">Our own crew, a start date we hold to, and a site that gets cleaned up at the end of every day. You always know who is in your house.</p>
+          </div>
+          <div class="process__step" data-reveal data-reveal-delay="240">
+            <h3 data-i18n="proc.4.title">We walk it again</h3>
+            <p data-i18n="proc.4.body">Final walkthrough together. Anything you are not happy with goes on a punch list and gets handled before we call the job done.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SERVICE AREA ==================== -->
+    <section class="section section--tint">
+      <div class="container">
+        <div class="split split--reverse">
+          <div class="split__media" data-reveal>
+            <picture>
+              <source srcset="/assets/gallery/concrete-slab-fence.webp" type="image/webp" />
+              <img src="/assets/gallery/concrete-slab-fence.jpg"
+                   alt="A freshly poured and finished concrete slab running alongside a home with a new cedar fence"
+                   width="720" height="1280" loading="lazy" decoding="async" />
+            </picture>
+          </div>
+
+          <div class="split__body" data-reveal data-reveal-delay="90">
+            <span class="eyebrow" data-i18n="area.eyebrow">Where We Work</span>
+            <h2 data-i18n="area.title">Placerville, and across Northern California</h2>
+            <p data-i18n="area.body">
+              We are based in Placerville, work daily throughout El Dorado County and Greater
+              Sacramento, and travel for projects across Northern California. Foothill lots come
+              with their own problems &mdash; slope, drainage, decomposed granite, access for a
+              concrete truck &mdash; and we have been solving them here for years.
+            </p>
+
+            <div class="chip-row" style="margin-top: var(--space-lg)">
+              <span class="chip" data-i18n="area.c1">Placerville</span>
+              <span class="chip" data-i18n="area.c2">El Dorado Hills</span>
+              <span class="chip" data-i18n="area.c3">Cameron Park</span>
+              <span class="chip" data-i18n="area.c4">Shingle Springs</span>
+              <span class="chip" data-i18n="area.c5">Diamond Springs</span>
+              <span class="chip" data-i18n="area.c6">Folsom</span>
+              <span class="chip" data-i18n="area.c7">Pollock Pines</span>
+              <span class="chip" data-i18n="area.c8">Greater Sacramento</span>
+              <span class="chip chip--accent" data-i18n="area.c9">All Northern California</span>
+            </div>
+
+            <p style="margin-top: var(--space-md)">
+              <a class="link-arrow" href="/quote.html">
+                <span data-i18n="area.cta">Further out? Ask us &mdash; we travel for the right project</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12h15"/><path d="m13.2 5.7 6.3 6.3-6.3 6.3"/></svg>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CTA ==================== -->
+    <section class="cta-band">
+      <div class="container cta-band__inner">
+        <div data-reveal>
+          <h2 data-i18n="cta.title">Tell us what you are trying to build</h2>
+          <p data-i18n="cta.body">
+            Answer a few questions and the details go straight to our project manager. Most estimates
+            are scheduled within one business day.
+          </p>
+        </div>
+        <div class="btn-row" data-reveal data-reveal-delay="90">
+          <a class="btn btn--accent btn--lg" href="/quote.html" data-i18n="cta.primary">Get My Free Estimate</a>
+          <button class="btn btn--ghost-light btn--lg" type="button" data-chat-open data-i18n="cta.secondary">Chat with us</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!--#include "partials/footer.html" -->
+</body>
+</html>

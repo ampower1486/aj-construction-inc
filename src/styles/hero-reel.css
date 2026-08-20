@@ -1,0 +1,130 @@
+/* ==========================================================================
+   Hero reel — the clip plays as a square inside the hero while the headline
+   steps aside, then hands the hero back. The rest of the page stays visible
+   and usable throughout; this is not an overlay.
+   ========================================================================== */
+
+/* Sits above the scrim but below the copy, and centred in the hero regardless
+   of where the copy sits (the copy is bottom-left, the reel is dead centre). */
+.hero__reel {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  padding: calc(var(--chrome-h) + var(--space-md)) var(--gutter) var(--space-xl);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 520ms var(--ease-out), visibility 520ms;
+}
+
+.hero.is-reel-playing .hero__reel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* The clip is 960x960. Keeping the frame square means it is never cropped —
+   `min()` fits it to whichever of height, width or a sensible cap is tightest. */
+.hero__reel-video {
+  width: min(520px, 56vh, 84vw);
+  aspect-ratio: 1;
+  height: auto;
+  object-fit: cover;
+  background: #fbfbfb;
+  border-radius: var(--r-lg);
+  box-shadow: 0 30px 80px rgba(6, 34, 47, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  transform: scale(0.97);
+  transition: transform 520ms var(--ease-out);
+}
+
+.hero.is-reel-playing .hero__reel-video {
+  transform: scale(1);
+}
+
+/* --- The copy it swaps with ---------------------------------------------- */
+
+.hero__copy {
+  transition: opacity 420ms var(--ease-out), transform 420ms var(--ease-out);
+}
+
+.hero.is-reel-playing .hero__copy {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
+/* Set by the inline script in <head> so the headline never flashes on screen
+   before an autoplaying reel hides it. The module clears it on boot. */
+html.reel-pending .hero__copy {
+  opacity: 0;
+}
+
+/* --- Replay control ------------------------------------------------------ */
+
+/* The control adds a row to the hero, so claw back the equivalent from the
+   section's foot — otherwise it lands under the fold on a laptop. Scoped with
+   :has() so the no-video build keeps its original breathing room. */
+.hero:has(.hero__replay) {
+  padding-bottom: var(--space-xl);
+}
+
+.hero__replay {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: var(--space-sm);
+  padding: 0.5rem 1.05rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: color var(--t-fast) var(--ease-out),
+    background-color var(--t-fast) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out);
+}
+
+.hero__replay:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #fff;
+}
+
+.hero__replay svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+
+/* Progress hairline across the foot of the hero while the clip runs. */
+.hero__reel-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: var(--sky-500);
+  opacity: 0;
+  transition: width 120ms linear, opacity 300ms ease;
+}
+
+.hero.is-reel-playing .hero__reel-progress {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__reel,
+  .hero__copy,
+  .hero__reel-video {
+    transition: none;
+  }
+}
