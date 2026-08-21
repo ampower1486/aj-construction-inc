@@ -10,3 +10,8 @@ dist/
 /*.png
 
 verify-shots/
+
+# Conect-R sales/pricing material — deliberately NOT committed.
+# The GitHub repo is public, and this folder contains market-rate research and
+# cost breakdowns intended for Conect-R, not for the client or the public.
+docs/
