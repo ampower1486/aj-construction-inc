@@ -6,11 +6,17 @@
  * to keep layout shift at zero.
  */
 
-import { PHOTOS, CATEGORIES } from '../data/gallery-manifest.js';
+import { PHOTOS, CATEGORIES, VIDEOS } from '../data/gallery-manifest.js';
 import { icons } from './icons.js';
 import { t, onLocaleChange } from './i18n.js';
 
 const src = (slug, variant) => `/assets/gallery/${slug}${variant}`;
+
+/** Category id -> its translated label. Ids are slugs; keys are not derivable. */
+const catLabel = (id) => {
+  const cat = CATEGORIES.find((c) => c.id === id);
+  return cat ? t(cat.key) : id;
+};
 
 function photoMarkup(photo, index) {
   const tall = photo.tall ? ' gallery-item--tall' : '';
@@ -24,7 +30,7 @@ function photoMarkup(photo, index) {
              loading="lazy" decoding="async" width="800" height="800">
       </picture>
       <span class="gallery-item__overlay">
-        <span class="gallery-item__cat">${t(`gal.${photo.categories[0]}`)}</span>
+        <span class="gallery-item__cat">${catLabel(photo.categories[0])}</span>
         <span class="gallery-item__title">${t(photo.titleKey)}</span>
       </span>
     </button>`;
@@ -201,31 +207,63 @@ export function initGallery() {
   });
 }
 
-/* --- Facebook reel embeds ------------------------------------------------ */
+/* --- Project videos ------------------------------------------------------ */
 
 /**
- * Reels stay as click-to-play posters until the visitor asks for them, so
- * Facebook's player (and its cookies) never loads on a plain page view.
+ * Videos are self-hosted, so no third-party player and no cookie banner. Each
+ * card is a poster still with a play button; `preload="none"` means the mp4
+ * itself is not fetched until the visitor actually presses play.
  */
+function videoMarkup(video) {
+  const poster = `/assets/video/${video.slug}-poster`;
+  return `
+    <div class="video-card" data-video="${video.slug}" style="aspect-ratio:${video.w}/${video.h}">
+      <picture>
+        <source srcset="${poster}.webp" type="image/webp">
+        <img src="${poster}.jpg" alt="${t(video.titleKey)}"
+             width="${video.w}" height="${video.h}" loading="lazy" decoding="async">
+      </picture>
+      <button class="video-card__play" type="button" aria-label="${t(video.titleKey)}">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(255,255,255,.16)" stroke="#fff" stroke-width="1.3"/><path d="M9.8 8.2 16 12l-6.2 3.8Z" fill="#fff"/></svg>
+        <span data-i18n="gp.watch">${t('gp.watch')}</span>
+      </button>
+    </div>`;
+}
+
 export function initVideos() {
-  document.querySelectorAll('[data-reel]').forEach((card) => {
-    const btn = card.querySelector('.video-card__play');
+  const host = document.getElementById('video-grid');
+  if (!host) return;
+
+  const draw = () => {
+    host.innerHTML = VIDEOS.map(videoMarkup).join('');
+  };
+
+  draw();
+  onLocaleChange(draw);
+
+  host.addEventListener('click', (e) => {
+    const btn = e.target.closest('.video-card__play');
     if (!btn) return;
 
-    btn.addEventListener('click', () => {
-      const url = `https://www.facebook.com/plugins/video.php?height=476&href=${encodeURIComponent(
-        `https://www.facebook.com/reel/${card.dataset.reel}/`
-      )}&show_text=false&autoplay=true`;
+    const card = btn.closest('[data-video]');
+    const meta = VIDEOS.find((v) => v.slug === card.dataset.video);
+    if (!meta) return;
 
-      const frame = document.createElement('iframe');
-      frame.src = url;
-      frame.title = t('gal.videoTitle');
-      frame.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';
-      frame.allowFullscreen = true;
-      frame.loading = 'lazy';
+    const el = document.createElement('video');
+    el.src = `/assets/video/${meta.slug}.mp4`;
+    el.poster = `/assets/video/${meta.slug}-poster.jpg`;
+    el.controls = true;
+    el.autoplay = true;
+    el.playsInline = true;
+    el.preload = 'auto';
+    el.width = meta.w;
+    el.height = meta.h;
+    el.setAttribute('aria-label', t(meta.titleKey));
 
-      card.innerHTML = '';
-      card.appendChild(frame);
+    card.innerHTML = '';
+    card.appendChild(el);
+    el.play().catch(() => {
+      /* Autoplay refused (rare with a user gesture) — controls are already up. */
     });
   });
 }

@@ -12,6 +12,8 @@
 import { chromium } from 'playwright';
 import { mkdirSync } from 'fs';
 
+import { PHOTOS, VIDEOS } from '../src/data/gallery-manifest.js';
+
 const BASE = process.argv[2] || 'http://localhost:5199';
 const SHOTS = 'verify-shots';
 
@@ -698,7 +700,9 @@ console.log('\n=== GALLERY ===');
   await page.waitForTimeout(500);
 
   const count = await page.locator('.gallery-item').count();
-  count === 5 ? pass(`${count} gallery items rendered`) : fail(`expected 5 items, got ${count}`);
+  count === PHOTOS.length
+    ? pass(`${count} gallery items rendered`)
+    : fail(`expected ${PHOTOS.length} items, got ${count}`);
 
   await page.click('.gallery-item');
   await page.waitForTimeout(400);
@@ -724,18 +728,44 @@ console.log('\n=== GALLERY ===');
   const visible = await page.evaluate(
     () => [...document.querySelectorAll('.gallery-item')].filter((i) => !i.hidden).length
   );
-  visible === 3 ? pass(`concrete filter shows ${visible}`) : fail(`concrete filter showed ${visible}, expected 3`);
+  const expectConcrete = PHOTOS.filter((p) => p.categories.includes('concrete')).length;
+  visible === expectConcrete
+    ? pass(`concrete filter shows ${visible}`)
+    : fail(`concrete filter showed ${visible}, expected ${expectConcrete}`);
 
-  // Facebook must not be contacted before the visitor clicks play.
-  const fbRequests = [];
+  // Videos are click-to-play: the poster is all a plain page view downloads.
+  const cards = await page.locator('.video-card').count();
+  cards === VIDEOS.length
+    ? pass(`${cards} video cards rendered`)
+    : fail(`expected ${VIDEOS.length} video cards, got ${cards}`);
+
+  const mp4s = [];
   page.on('request', (r) => {
-    if (/facebook|fbcdn/.test(r.url())) fbRequests.push(r.url());
+    if (/\.mp4(\?|$)/.test(r.url()) && !/intro\.mp4/.test(r.url())) mp4s.push(r.url());
   });
   await page.reload({ waitUntil: 'networkidle' });
   await page.waitForTimeout(800);
-  fbRequests.length === 0
-    ? pass('no Facebook requests before play is pressed')
-    : fail(`Facebook contacted on load: ${fbRequests[0]}`);
+  mp4s.length === 0
+    ? pass('no project video downloads before play is pressed')
+    : fail(`video fetched on load: ${mp4s[0]}`);
+
+  // Nothing on the page may reach a third party any more.
+  const thirdParty = await page.evaluate(() =>
+    [...document.querySelectorAll('[src],[href]')]
+      .map((el) => el.getAttribute('src') || el.getAttribute('href'))
+      .filter((u) => u && /facebook|fbcdn/.test(u) && !/facebook\.com\/profile/.test(u))
+  );
+  thirdParty.length === 0
+    ? pass('gallery embeds nothing from Facebook')
+    : fail(`Facebook embed still present: ${thirdParty[0]}`);
+
+  await page.click('.video-card__play');
+  await page.waitForTimeout(1200);
+  const playing = await page.evaluate(() => {
+    const v = document.querySelector('.video-card video');
+    return v ? { has: true, src: v.currentSrc, t: v.currentTime } : { has: false };
+  });
+  playing.has ? pass(`video plays on click (t=${playing.t.toFixed(1)}s)`) : fail('play button produced no <video>');
 
   await ctx.close();
 }

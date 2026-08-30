@@ -360,8 +360,10 @@ export const ES = {
   'svc.other': 'Otra cosa',
 
   'gal.all': 'Todo',
-  'gal.decks': 'Terrazas',
+  'gal.kitchensBaths': 'Cocinas y Baños',
+  'gal.decks': 'Terrazas y Patios',
   'gal.concrete': 'Concreto',
+  'gal.roofing': 'Techos',
   'gal.exterior': 'Exteriores',
   'gal.openLabel': 'ver más grande',
   'gal.lightboxLabel': 'Visor de fotos del proyecto',
@@ -371,21 +373,102 @@ export const ES = {
   'gal.videoTitle': 'Video de obra de AJ Construction',
   'gal.empty': 'Todavía no hay proyectos en esta categoría.',
 
-  'gal.p1.title': 'Terraza y Andador — Terminado',
-  'gal.p1.caption':
-    'La terraza terminada con barandal de cable y un andador de concreto que llega hasta ella, en una propiedad de montaña cerca de Placerville.',
-  'gal.p2.title': 'Terraza Envolvente',
-  'gal.p2.caption':
-    'Terraza envolvente terminada con barandal blanco, escaleras y estructura completa de postes y zapatas en una casa de dos pisos.',
-  'gal.p3.title': 'Losa de Concreto y Cerca',
-  'gal.p3.caption':
-    'Losa de concreto recién colada y acabada a lo largo de la casa, junto a una cerca nueva de cedro.',
-  'gal.p4.title': 'Estructura de la Terraza',
-  'gal.p4.caption':
-    'Vigas, viguetas y zapatas colocándose para una terraza nueva, escuadradas y niveladas contra la casa existente.',
-  'gal.p5.title': 'Estructura y Cimbra',
-  'gal.p5.caption':
-    'Estructura de terraza en proceso con la cimbra de concreto estacada y trazada al frente, equipo en obra.',
+  /* Títulos y descripciones. Las claves coinciden con el slug en gallery-manifest.js. */
+  'gal.kitchen-remodel-quartz-island.title': 'Remodelación de Cocina — Isla de Cuarzo',
+  'gal.kitchen-remodel-quartz-island.caption':
+    'Cocina reconstruida por completo con gabinetes shaker blancos, isla de cuarzo tipo cascada, piso nuevo y la plomería y el sistema eléctrico rehechos detrás de los muros.',
+  'gal.backyard-spa-walkway.title': 'Spa y Andador de Concreto',
+  'gal.backyard-spa-walkway.caption':
+    'Patio terminado: spa sobre su propia base, andador de concreto con acabado de escoba rodeando la fuente y jardinería nueva integrada alrededor.',
+  'gal.bathroom-double-vanity-shower.title': 'Remodelación de Baño — Doble Lavabo',
+  'gal.bathroom-double-vanity-shower.caption':
+    'Doble lavabo con muro de espejo enmarcado y regadera de azulejo sin escalón, completamente impermeabilizada antes de colocar el primer azulejo.',
+  'gal.redwood-deck-boulders.title': 'Terraza de Secuoya — Terminada',
+  'gal.redwood-deck-boulders.caption':
+    'Terraza de secuoya terminada, construida entre un afloramiento de rocas de granito, con barandal y escalera ajustados al desnivel natural.',
+  'gal.covered-patio-lighting.title': 'Patio Techado con Luz Empotrada',
+  'gal.covered-patio-lighting.caption':
+    'Techo sólido de patio sobre losa de concreto colada, terminado con plafón limpio e iluminación empotrada instalada según código.',
+  'gal.concrete-driveway-poured.title': 'Entrada de Concreto',
+  'gal.concrete-driveway-poured.caption':
+    'Colado completo de entrada para autos con juntas de control cortadas en cuadrícula y desnivel calculado para alejar el agua de la casa.',
+  'gal.bathroom-tile-tub-surround.title': 'Baño — Azulejo en la Tina',
+  'gal.bathroom-tile-tub-surround.caption':
+    'Azulejo de piso a techo alrededor de la tina sobre piso tipo pizarra, con nicho y bordes escuadrados y bien emboquillados.',
+  'gal.poolside-patio-cover.title': 'Patio Techado junto a la Alberca',
+  'gal.poolside-patio-cover.caption':
+    'Techo de patio y piso de concreto colados junto a una alberca existente, dando sombra al patio y una superficie pareja de extremo a extremo.',
+  'gal.redwood-deck-multi-level.title': 'Terraza de Secuoya en Varios Niveles',
+  'gal.redwood-deck-multi-level.caption':
+    'Terraza de secuoya en varios niveles que baja siguiendo la pendiente, dimensionada para mesa de exterior y una sala completa.',
+  'gal.shingle-roof-replacement.title': 'Techo Nuevo — Teja Arquitectónica',
+  'gal.shingle-roof-replacement.caption':
+    'Retiro total y techo nuevo con teja arquitectónica, incluyendo membrana, tapajuntas y ventilación de cumbrera nuevos.',
+  'gal.concrete-slab-finished.title': 'Losa de Concreto Terminada',
+  'gal.concrete-slab-finished.caption':
+    'Losa colada y acabada, fotografiada al final de la jornada, con los bordes cortados y la superficie perfectamente alisada.',
+  'gal.tile-floor-installation.title': 'Instalación de Piso de Azulejo',
+  'gal.tile-floor-installation.caption':
+    'Azulejo de formato grande sobre una base nivelada, colocado con niveladores para que cada borde quede plano y sin desniveles.',
+  'gal.cedar-fence-and-gate.title': 'Cerca y Portón de Cedro',
+  'gal.cedar-fence-and-gate.caption':
+    'Cerca de privacidad de cedro y portón a juego escalonados sobre un lindero inclinado, con postes fijados en concreto.',
+  'gal.block-retaining-wall.title': 'Muro de Contención de Block',
+  'gal.block-retaining-wall.caption':
+    'Muro de contención de block y jardinera elevada construidos hasta la calle, conteniendo el terreno y cuadrando el frente.',
+  'gal.shingle-roof-aerial.title': 'Techo Nuevo — Vista Aérea',
+  'gal.shingle-roof-aerial.caption':
+    'Vista desde arriba de un techo de teja terminado, con hiladas parejas y limatesas correctamente traslapadas.',
+  'gal.concrete-steps-hillside.title': 'Escalones de Concreto',
+  'gal.concrete-steps-hillside.caption':
+    'Escalones de concreto colados que suben por un terreno inclinado, cimbrados con huellas parejas para que sean seguros incluso de noche.',
+  'gal.fence-replacement-before.title': 'Reemplazo de Cerca — Antes',
+  'gal.fence-replacement-before.caption':
+    'La cerca original: postes podridos al nivel del suelo y secciones completas caídas. Por esto nos llamó el cliente.',
+  'gal.fence-replacement-after.title': 'Reemplazo de Cerca — Después',
+  'gal.fence-replacement-after.caption':
+    'El mismo lindero reconstruido recto y a plomo, con el patio despejado y la línea de cipreses limpia.',
+  'gal.ranch-home-exterior.title': 'Exterior de Casa Estilo Rancho',
+  'gal.ranch-home-exterior.caption':
+    'Casa de un piso estilo rancho después del trabajo exterior, con el césped y el frente restaurados alrededor.',
+  'gal.poolside-home-roof-work.title': 'Techo Nuevo en Casa de Dos Pisos',
+  'gal.poolside-home-roof-work.caption':
+    'Trabajo de techo en una casa de dos pisos, organizado y cargado de modo que la alberca y el patio de abajo quedaran libres.',
+  'gal.hillside-deck-framing.title': 'Estructura de Terraza en Ladera',
+  'gal.hillside-deck-framing.caption':
+    'Estructura de terraza sobre una ladera rocosa, con cada poste bajando a su propia zapata y el marco perfectamente nivelado.',
+  'gal.deck-joist-framing.title': 'Viguetas de Terraza',
+  'gal.deck-joist-framing.caption':
+    'Viguetas trazadas a 16 pulgadas entre centros y bloqueadas, listas para recibir la duela.',
+  'gal.hillside-home-deck-framing.title': 'Casa de Montaña — Terraza en Proceso',
+  'gal.hillside-home-deck-framing.caption':
+    'Terraza nueva tomando forma en la parte trasera de una casa de montaña, unida a la estructura existente con tapajuntas correcto en la solera.',
+  'gal.poolside-addition-framing.title': 'Ampliación — Estructura Levantada',
+  'gal.poolside-addition-framing.caption':
+    'Ampliación nueva estructurada y levantada junto a la alberca, con la línea del techo igualada a la casa original antes del forro.',
+  'gal.stair-framing-retaining-wall.title': 'Escalera y Muro de Contención',
+  'gal.stair-framing-retaining-wall.caption':
+    'Zancas de escalera cortadas y colocadas contra un muro de contención de block nuevo, conectando dos niveles en un terreno inclinado.',
+  'gal.concrete-forms-rebar.title': 'Cimbra y Varilla',
+  'gal.concrete-forms-rebar.caption':
+    'Cimbra curva estacada y varilla amarrada sobre silletas, revisada y lista para el colado.',
+  'gal.concrete-pour-in-progress.title': 'Colado de Concreto en Proceso',
+  'gal.concrete-pour-in-progress.caption':
+    'Colocando y enrasando concreto en un colado en ladera, trabajando la superficie antes de que fragüe.',
+  'gal.slab-prep-grading-crew.title': 'Preparación y Nivelación de Losa',
+  'gal.slab-prep-grading-crew.caption':
+    'El equipo nivelando y compactando la base al anochecer, dejando la plataforma plana y precisa antes de que llegue el concreto.',
+  'gal.concrete-crew-mixer-truck.title': 'Día de Colado',
+  'gal.concrete-crew-mixer-truck.caption':
+    'Camión revolvedor en obra y el equipo colocando concreto — la parte del trabajo que solo sale bien si la preparación salió bien.',
+
+  /* Títulos de video. Las claves coinciden con el slug en gallery-manifest.js. */
+  'gal.v.roofing-crew': 'Equipo de techado en un retiro y techo nuevo',
+  'gal.v.bathroom-remodel-finished': 'Baño remodelado terminado — recorrido',
+  'gal.v.deck-patio-cover': 'Terraza y patio techado terminados',
+  'gal.v.stairs-vinyl-plank-finished': 'Escalera y piso vinílico terminados',
+  'gal.v.concrete-slab-walkthrough': 'Losa de concreto terminada — recorrido',
+  'gal.v.concrete-walkway-finished': 'Andador de concreto terminado',
 
   'lead.projectType': 'Proyecto',
   'lead.scope': 'Alcance',

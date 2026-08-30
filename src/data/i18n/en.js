@@ -27,8 +27,10 @@ export const EN = {
 
   /* --- Gallery --- */
   'gal.all': 'All work',
-  'gal.decks': 'Decks',
+  'gal.kitchensBaths': 'Kitchens & Baths',
+  'gal.decks': 'Decks & Patios',
   'gal.concrete': 'Concrete',
+  'gal.roofing': 'Roofing',
   'gal.exterior': 'Exterior',
   'gal.openLabel': 'open larger',
   'gal.lightboxLabel': 'Project photo viewer',
@@ -38,21 +40,106 @@ export const EN = {
   'gal.videoTitle': 'AJ Construction project video',
   'gal.empty': 'No projects in this category yet.',
 
-  'gal.p1.title': 'Deck & Walkway — Finished',
-  'gal.p1.caption':
-    'The completed deck with cable railing and a poured concrete paver walkway leading up to it, on a foothill property outside Placerville.',
-  'gal.p2.title': 'Wrap-Around Deck',
-  'gal.p2.caption':
-    'A finished wrap-around deck with white railing, stairs and full post-and-pier substructure on a two-storey home.',
-  'gal.p3.title': 'Concrete Slab & Fence Line',
-  'gal.p3.caption':
-    'A freshly poured and finished concrete slab running the length of the house, alongside a new cedar fence.',
-  'gal.p4.title': 'Deck Substructure',
-  'gal.p4.caption':
-    'Joists, beams and pier footings going in for a new deck, squared and levelled against the existing house.',
-  'gal.p5.title': 'Framing & Concrete Forms',
-  'gal.p5.caption':
-    'Deck framing under way with concrete forms staked and set out in the foreground, crew on site.',
+  /* JS-only: the video cards are rendered from the manifest, so this label has
+     no markup for i18n.js to snapshot English from. */
+  'gp.watch': 'Watch video',
+
+  /* Photo titles and captions. Keys match the slug in gallery-manifest.js. */
+  'gal.kitchen-remodel-quartz-island.title': 'Kitchen Remodel — Quartz Waterfall Island',
+  'gal.kitchen-remodel-quartz-island.caption':
+    'A full kitchen rebuild in white shaker cabinetry with a quartz waterfall island, new flooring, and the plumbing and electrical reworked behind the walls.',
+  'gal.backyard-spa-walkway.title': 'Backyard Spa & Concrete Walkway',
+  'gal.backyard-spa-walkway.caption':
+    'A finished backyard: spa set on its own pad, a broom-finished concrete walkway wrapping the water feature, and fresh landscaping tied in around it.',
+  'gal.bathroom-double-vanity-shower.title': 'Bathroom Remodel — Double Vanity',
+  'gal.bathroom-double-vanity-shower.caption':
+    'A double vanity with a framed mirror wall and a curbless walk-in tile shower, fully waterproofed before a single tile went on.',
+  'gal.redwood-deck-boulders.title': 'Redwood Deck — Finished',
+  'gal.redwood-deck-boulders.caption':
+    'A finished redwood deck built into a granite boulder outcrop, with the railing and stair run set to match the natural grade.',
+  'gal.covered-patio-lighting.title': 'Covered Patio with Recessed Lighting',
+  'gal.covered-patio-lighting.caption':
+    'A solid patio cover over a poured concrete slab, finished with a clean ceiling and recessed lighting wired to code.',
+  'gal.concrete-driveway-poured.title': 'Concrete Driveway',
+  'gal.concrete-driveway-poured.caption':
+    'A full driveway pour with control joints cut on the grid, graded to carry water away from the house.',
+  'gal.bathroom-tile-tub-surround.title': 'Bathroom — Tile Tub Surround',
+  'gal.bathroom-tile-tub-surround.caption':
+    'A floor-to-ceiling tile tub surround over a slate-look floor, with the niche and edges set square and grouted clean.',
+  'gal.poolside-patio-cover.title': 'Poolside Patio Cover',
+  'gal.poolside-patio-cover.caption':
+    'A patio cover and concrete deck poured alongside an existing pool, giving the yard shade and a level surface end to end.',
+  'gal.redwood-deck-multi-level.title': 'Multi-Level Redwood Deck',
+  'gal.redwood-deck-multi-level.caption':
+    'A multi-level redwood deck stepping down with the slope, sized for an outdoor table and a full seating area.',
+  'gal.shingle-roof-replacement.title': 'Roof Replacement — Architectural Shingle',
+  'gal.shingle-roof-replacement.caption':
+    'A complete tear-off and re-roof in architectural shingle, with new underlayment, flashing and ridge vent throughout.',
+  'gal.concrete-slab-finished.title': 'Finished Concrete Slab',
+  'gal.concrete-slab-finished.caption':
+    'A poured and finished slab photographed at the end of the day, edges cut and surface floated smooth.',
+  'gal.tile-floor-installation.title': 'Tile Floor Installation',
+  'gal.tile-floor-installation.caption':
+    'Large-format tile going down on a levelled substrate, set with leveling clips so every edge comes out flat and lippage-free.',
+  'gal.cedar-fence-and-gate.title': 'Cedar Fence & Gate',
+  'gal.cedar-fence-and-gate.caption':
+    'A cedar privacy fence and matching gate stepped down a sloped property line, posts set in concrete.',
+  'gal.block-retaining-wall.title': 'Block Retaining Wall',
+  'gal.block-retaining-wall.caption':
+    'A block retaining wall and raised planter built out to the street, holding back grade and squaring off the frontage.',
+  'gal.shingle-roof-aerial.title': 'New Roof — Overhead',
+  'gal.shingle-roof-aerial.caption':
+    'An overhead look at a finished shingle roof, showing clean course lines and properly lapped valleys.',
+  'gal.concrete-steps-hillside.title': 'Concrete Steps',
+  'gal.concrete-steps-hillside.caption':
+    'Poured concrete steps climbing a hillside lot, formed with even risers so the run is safe to walk in the dark.',
+  'gal.fence-replacement-before.title': 'Fence Replacement — Before',
+  'gal.fence-replacement-before.caption':
+    'The original fence: posts rotted at grade and whole sections down. This is what the homeowner called us about.',
+  'gal.fence-replacement-after.title': 'Fence Replacement — After',
+  'gal.fence-replacement-after.caption':
+    'The same property line rebuilt straight and plumb, with the yard opened back up and the cypress line cleared.',
+  'gal.ranch-home-exterior.title': 'Ranch Home Exterior',
+  'gal.ranch-home-exterior.caption':
+    'A single-storey ranch home after exterior work, with the lawn and frontage brought back in around it.',
+  'gal.poolside-home-roof-work.title': 'Two-Storey Re-Roof',
+  'gal.poolside-home-roof-work.caption':
+    'Roof work under way on a two-storey home, staged and loaded so the pool and yard below stayed clear.',
+  'gal.hillside-deck-framing.title': 'Hillside Deck Framing',
+  'gal.hillside-deck-framing.caption':
+    'Deck framing over a rocky hillside, every post carried down to its own footing and the frame brought dead level.',
+  'gal.deck-joist-framing.title': 'Deck Joist Framing',
+  'gal.deck-joist-framing.caption':
+    'Joists laid out on 16-inch centres and blocked, ready for decking to go down.',
+  'gal.hillside-home-deck-framing.title': 'Foothill Home — Deck in Progress',
+  'gal.hillside-home-deck-framing.caption':
+    'A new deck taking shape off the back of a foothill home, tied into the existing structure with proper ledger flashing.',
+  'gal.poolside-addition-framing.title': 'Home Addition — Framed',
+  'gal.poolside-addition-framing.caption':
+    'A new addition framed and standing poolside, roof line matched to the original house before sheathing goes on.',
+  'gal.stair-framing-retaining-wall.title': 'Stair Framing & Retaining Wall',
+  'gal.stair-framing-retaining-wall.caption':
+    'Cut stair stringers set against a new block retaining wall, connecting two grades on a sloped lot.',
+  'gal.concrete-forms-rebar.title': 'Forms & Rebar',
+  'gal.concrete-forms-rebar.caption':
+    'Curved forms staked out and rebar tied on chairs, inspected and ready for a pour.',
+  'gal.concrete-pour-in-progress.title': 'Concrete Pour in Progress',
+  'gal.concrete-pour-in-progress.caption':
+    'Placing and screeding concrete on a hillside pour, working the surface before it sets up.',
+  'gal.slab-prep-grading-crew.title': 'Slab Prep & Grading',
+  'gal.slab-prep-grading-crew.caption':
+    'The crew grading and compacting base at dusk, getting the pad flat and true before any concrete arrives.',
+  'gal.concrete-crew-mixer-truck.title': 'Pour Day',
+  'gal.concrete-crew-mixer-truck.caption':
+    'Mixer truck on site and the crew placing concrete — the part of the job that only goes well if the prep did.',
+
+  /* Video titles. Keys match the slug in gallery-manifest.js. */
+  'gal.v.roofing-crew': 'Roofing crew on a tear-off and re-roof',
+  'gal.v.bathroom-remodel-finished': 'Finished bathroom remodel — walkthrough',
+  'gal.v.deck-patio-cover': 'Finished deck and patio cover',
+  'gal.v.stairs-vinyl-plank-finished': 'Finished stairs and vinyl plank flooring',
+  'gal.v.concrete-slab-walkthrough': 'Finished concrete slab — walkthrough',
+  'gal.v.concrete-walkway-finished': 'Finished concrete walkway',
 
   /* --- Lead field labels (used in emails and summaries) --- */
   'lead.projectType': 'Project',

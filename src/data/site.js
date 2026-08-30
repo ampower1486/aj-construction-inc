@@ -61,11 +61,6 @@ export const SITE = {
     instagram: 'https://www.instagram.com/aj.construction.inc/',
   },
 
-  reels: [
-    { id: '978269071831181', poster: '/assets/gallery/concrete-slab-fence-thumb.webp' },
-    { id: '1336599275054948', poster: '/assets/gallery/deck-walkway-complete-thumb.webp' },
-  ],
-
   /**
    * Where leads go. Set VITE_FORM_ENDPOINT in .env to a Formspree (or similar)
    * endpoint that forwards to the address above. Without it the form falls back

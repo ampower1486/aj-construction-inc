@@ -4,8 +4,9 @@ Build web-ready assets from the originals in assets-src/.
 
     python3 scripts/prepare-assets.py
 
-Reads   assets-src/gallery/*.jpg   and assets-src/logo/*
+Reads   assets-src/gallery/*.jpg, assets-src/video-posters/*.jpg, assets-src/logo/*
 Writes  public/assets/gallery/     (webp + jpg, full + thumb)
+        public/assets/video/       (poster stills; the .mp4s themselves are checked in)
         public/assets/logo/        (master logo, transparent footer mark, favicons)
         public/assets/og/          (social share card)
 
@@ -25,8 +26,10 @@ from PIL import Image, ImageDraw
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC_GALLERY = os.path.join(ROOT, "assets-src", "gallery")
+SRC_POSTERS = os.path.join(ROOT, "assets-src", "video-posters")
 SRC_LOGO = os.path.join(ROOT, "assets-src", "logo")
 OUT_GALLERY = os.path.join(ROOT, "public", "assets", "gallery")
+OUT_VIDEO = os.path.join(ROOT, "public", "assets", "video")
 OUT_LOGO = os.path.join(ROOT, "public", "assets", "logo")
 OUT_OG = os.path.join(ROOT, "public", "assets", "og")
 
@@ -36,8 +39,18 @@ NAVY = (12, 65, 98)
 
 
 def ensure_dirs():
-    for d in (OUT_GALLERY, OUT_LOGO, OUT_OG):
+    for d in (OUT_GALLERY, OUT_VIDEO, OUT_LOGO, OUT_OG):
         os.makedirs(d, exist_ok=True)
+
+    # Gallery output is fully derived, so clear it — otherwise renditions of
+    # photos that have since been removed from assets-src/ linger forever.
+    for f in os.listdir(OUT_GALLERY):
+        os.remove(os.path.join(OUT_GALLERY, f))
+
+    # Video posters are derived too, but the .mp4 files beside them are not.
+    for f in os.listdir(OUT_VIDEO):
+        if "-poster." in f:
+            os.remove(os.path.join(OUT_VIDEO, f))
 
 
 def save_pair(im, base, quality_webp=82, quality_jpg=84):
@@ -73,6 +86,25 @@ def build_gallery():
         save_pair(thumb, os.path.join(OUT_GALLERY, f"{stem}-thumb"), 78, 80)
 
         print(f"  {stem:28} {im.size[0]}x{im.size[1]} -> full {full.size[0]}px + thumb {thumb.size[0]}px")
+
+
+def build_video_posters():
+    """
+    Still frames for the click-to-play project videos. The .mp4s are committed
+    as-is; only the poster a visitor sees before pressing play is generated here.
+    """
+    if not os.path.isdir(SRC_POSTERS):
+        print("  no assets-src/video-posters — skipping")
+        return
+
+    names = sorted(f for f in os.listdir(SRC_POSTERS) if f.lower().endswith((".jpg", ".jpeg", ".png")))
+    for name in names:
+        stem = os.path.splitext(name)[0]
+        im = Image.open(os.path.join(SRC_POSTERS, name)).convert("RGB")
+        im = strip_exif(im)
+        im.thumbnail((THUMB_MAX, THUMB_MAX), Image.LANCZOS)
+        save_pair(im, os.path.join(OUT_VIDEO, f"{stem}-poster"), 78, 80)
+        print(f"  {stem + '-poster':28} {im.size[0]}x{im.size[1]}")
 
 
 def flood_transparent(im, tolerance=34):
@@ -171,7 +203,7 @@ def build_favicons(mark):
 
 def build_og():
     """1200x630 social card: project photo, navy scrim, logo lockup."""
-    photo_path = os.path.join(SRC_GALLERY, "deck-walkway-complete.jpg")
+    photo_path = os.path.join(SRC_GALLERY, "backyard-spa-walkway.jpg")
     if not os.path.exists(photo_path):
         print("  og — source photo missing, skipping")
         return
@@ -205,6 +237,8 @@ if __name__ == "__main__":
     ensure_dirs()
     print("gallery:")
     build_gallery()
+    print("video posters:")
+    build_video_posters()
     print("logo:")
     build_logo()
     print("social:")
