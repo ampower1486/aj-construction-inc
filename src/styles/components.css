@@ -762,14 +762,33 @@
   color: #fff;
 }
 
-/* The dark footer is the one place the logo cannot sit on its white JPEG
-   background, so it uses the derived transparent mark instead. */
-.footer-brand__logo {
-  height: 74px;
-  width: auto;
+/* The dark footer has no white surface of its own, so the untouched master
+   logo sits on a small white plate — same crop math as the header's .brand
+   (the artwork occupies x84-943, y268-774 of the 1024x1024 source), just
+   larger and with breathing room, so it reads in full colour and full detail
+   instead of the flattened white silhouette this used to be. */
+.footer-brand__logo-plate {
+  display: inline-flex;
+  padding: 14px 18px;
   margin-bottom: var(--space-md);
-  filter: brightness(0) invert(1);
-  opacity: 0.95;
+  background: #fff;
+  border-radius: var(--r-sm);
+}
+
+.footer-brand__logo-crop {
+  --logo-h: 60px;
+  --logo-u: calc(var(--logo-h) / 507);
+  display: block;
+  width: calc(860 * var(--logo-u));
+  height: var(--logo-h);
+  overflow: hidden;
+}
+
+.footer-brand__logo {
+  width: calc(1024 * var(--logo-u));
+  height: calc(1024 * var(--logo-u));
+  max-width: none;
+  margin: calc(-268 * var(--logo-u)) 0 0 calc(-84 * var(--logo-u));
 }
 
 .footer-brand p {
@@ -815,18 +834,24 @@
   letter-spacing: 0.03em;
 }
 
+.social-row__cta {
+  margin-top: var(--space-md);
+  font-weight: 600;
+  color: #fff;
+}
+
 .social-row {
   display: flex;
-  gap: 0.6rem;
-  margin-top: var(--space-md);
+  gap: 0.75rem;
+  margin-top: 0.65rem;
 }
 
 .social-row a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 52px;
+  height: 52px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--r-sm);
   transition: background-color var(--t-base) var(--ease-out),
@@ -840,8 +865,8 @@
 }
 
 .social-row svg {
-  width: 17px;
-  height: 17px;
+  width: 24px;
+  height: 24px;
 }
 
 /* --- Conect-R bottom bar -------------------------------------------------

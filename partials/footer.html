@@ -1,15 +1,20 @@
 <footer class="site-footer">
   <div class="container site-footer__main">
     <div class="footer-brand">
-      <!-- The dark footer is the one surface where the supplied JPEG cannot sit
-           on its own white background, so it uses the derived transparent mark.
-           The original file is never altered. -->
-      <img class="footer-brand__logo" src="/assets/logo/aj-logo-mark.png" alt="AJ Construction Inc" width="876" height="522" loading="lazy" />
+      <!-- The dark footer has no white surface of its own, so the untouched
+           master logo (same file as the header, never edited) sits on a small
+           white plate instead of a monochrome cutout — full colour, full detail. -->
+      <span class="footer-brand__logo-plate">
+        <span class="footer-brand__logo-crop">
+          <img class="footer-brand__logo" src="/assets/logo/aj-logo.jpg" alt="AJ Construction Inc" width="1024" height="1024" loading="lazy" />
+        </span>
+      </span>
       <p data-i18n="footer.blurb">
         A family-owned general contractor in Placerville, California. A father, two sons,
         one crew, and work we are willing to put our name on.
       </p>
 
+      <p class="social-row__cta" data-i18n="footer.socialCta">Follow us for a look at our latest projects</p>
       <div class="social-row">
         <a href="https://www.facebook.com/profile.php?id=61590028926285" target="_blank" rel="noopener noreferrer" aria-label="AJ Construction Inc on Facebook">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.9h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94Z"/></svg>

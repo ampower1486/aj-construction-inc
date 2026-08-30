@@ -33,6 +33,7 @@ export const ES = {
 
   'footer.blurb':
     'Contratista general familiar en Placerville, California. Un padre, dos hijos, un solo equipo, y trabajo que firmamos con nuestro nombre.',
+  'footer.socialCta': 'Síganos para ver nuestros proyectos más recientes',
   'footer.explore': 'Navegar',
   'footer.services': 'Servicios',
   'footer.contact': 'Contacto',
