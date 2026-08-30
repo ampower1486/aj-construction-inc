@@ -722,16 +722,27 @@ console.log('\n=== GALLERY ===');
   const closed = await page.evaluate(() => !document.querySelector('.lightbox').classList.contains('is-open'));
   closed ? pass('Escape closes the lightbox') : fail('Escape did not close the lightbox');
 
-  // Filter narrows the grid.
+  // Filter narrows the grid. Checked by actual rendering (getBoundingClientRect),
+  // not the `hidden` DOM property — a `display` rule on `.gallery-item` once
+  // outranked the browser's [hidden] default, so items stayed visible on screen
+  // while `.hidden` correctly read true. The property alone would not catch that.
   await page.click('[data-filter="concrete"]');
   await page.waitForTimeout(300);
-  const visible = await page.evaluate(
-    () => [...document.querySelectorAll('.gallery-item')].filter((i) => !i.hidden).length
-  );
+  const filterResult = await page.evaluate(() => {
+    const items = [...document.querySelectorAll('.gallery-item')];
+    const onScreen = items.filter((i) => i.getBoundingClientRect().width > 0);
+    const flaggedHidden = items.filter((i) => i.hidden);
+    const visibleButFlaggedHidden = onScreen.filter((i) => i.hidden);
+    return { onScreenCount: onScreen.length, flaggedHiddenCount: flaggedHidden.length, leaked: visibleButFlaggedHidden.length };
+  });
   const expectConcrete = PHOTOS.filter((p) => p.categories.includes('concrete')).length;
-  visible === expectConcrete
-    ? pass(`concrete filter shows ${visible}`)
-    : fail(`concrete filter showed ${visible}, expected ${expectConcrete}`);
+  if (filterResult.leaked > 0) {
+    fail(`concrete filter: ${filterResult.leaked} item(s) marked hidden but still rendered on screen`);
+  } else if (filterResult.onScreenCount !== expectConcrete) {
+    fail(`concrete filter shows ${filterResult.onScreenCount} on screen, expected ${expectConcrete}`);
+  } else {
+    pass(`concrete filter shows ${filterResult.onScreenCount} on screen`);
+  }
 
   // Videos are click-to-play: the poster is all a plain page view downloads.
   const cards = await page.locator('.video-card').count();

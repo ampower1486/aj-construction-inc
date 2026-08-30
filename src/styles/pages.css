@@ -525,6 +525,12 @@
   aspect-ratio: 4 / 3;
 }
 
+/* Without this, the authored `display: block` above outranks the browser's
+   default [hidden] { display: none }, and category filtering does nothing. */
+.gallery-item[hidden] {
+  display: none;
+}
+
 .gallery-item--tall {
   aspect-ratio: 3 / 4;
   grid-row: span 2;
