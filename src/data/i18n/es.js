@@ -240,27 +240,27 @@ export const ES = {
 
   /* ===================== Story page ===================== */
   'st.lede':
-    'Un padre, sus dos hijos, y una razón muy simple para haber abierto nuestra propia compañía.',
-  'st.h1': 'Este oficio lo aprendimos de nuestro papá',
+    'Un padre, sus dos hijos, y un equipo que trata cada casa como si fuera la suya.',
+  'st.h1': 'Así empezó todo: el oficio de nuestro papá',
   'st.p1':
-    'Antes de que existiera AJ Construction Inc, había un padre que se llevaba a sus dos muchachos al trabajo. Fines de semana, veranos y cada vacación escolar — cargando madera, barriendo, y poco a poco recibiendo trabajo de verdad conforme demostrábamos que se nos podía confiar. Trece años después, los dos teníamos nuestras propias herramientas, nuestros propios equipos y nuestro propio nombre en el condado de El Dorado y el área de Sacramento — y nuestro papá seguía siendo la primera llamada cuando algo en una obra no se veía bien.',
+    'Mucho antes de que existiera AJ Construction Inc, había un padre que llevaba a sus dos hijos a trabajar con él. Fines de semana, veranos, cada vacación escolar — cargando madera, barriendo, y poco a poco ganándonos responsabilidades reales conforme demostrábamos que podíamos con ellas. Trece años después, teníamos nuestras propias herramientas, nuestros propios equipos, y un nombre del que nos sentimos orgullosos en el condado de El Dorado y el área de Sacramento. Y durante todo ese tiempo, nuestro papá ha seguido cerca — todavía es la primera llamada cuando una obra necesita otro par de ojos con experiencia.',
   'st.p2':
-    'En ese tiempo se ven las dos versiones de este oficio. Se ven equipos que llegan temprano, dejan la obra limpia y le dicen la verdad al dueño cuando algo sale caro. Y se ven obras donde el precio cambia a media semana, donde nadie sabe quién viene mañana, y donde el dueño se entera de los problemas hasta la factura final. Nuestro papá nos crió en la primera clase, y nunca tuvo paciencia para la segunda.',
+    'Lo que heredamos de él no fue solo el oficio — fue el estándar detrás de él: llegar cuando se dice que se va a llegar, dejar limpia la obra, y decirle la verdad al cliente, sobre todo cuando esa verdad cuesta más de lo que esperaba. Esa es la versión de este negocio en la que crecimos creyendo, y es la única versión que construimos.',
   'st.quote':
-    'Nos cansamos de ver a buena gente pagar por trabajo que nosotros no habríamos aceptado en nuestra propia casa.',
-  'st.quoteBy': 'Por qué abrimos AJ Construction Inc',
-  'st.h2': 'Así que armamos la compañía en la que nosotros contrataríamos',
+    'En cada proyecto ponemos el mismo cuidado que querríamos para la casa de nuestra propia familia.',
+  'st.quoteBy': 'Nuestro estándar en cada obra',
+  'st.h2': 'Así que armamos la compañía que nos enorgullece respaldar',
   'st.p3':
-    'AJ Construction Inc obtuvo su licencia de Contratista General Clase B con la Junta Estatal de Contratistas de California en noviembre de 2024 — licencia #1129358, con fianza de $25,000. Esa licencia no es un adorno: es lo que nos permite tomar responsabilidad de la casa completa en lugar de un solo oficio, y es verificable por cualquiera en treinta segundos.',
+    'AJ Construction Inc tiene su licencia de Contratista General Clase B con la Junta Estatal de Contratistas de California — emitida en noviembre de 2024, licencia #1129358, con fianza de $25,000. Esa licencia significa que podemos hacernos responsables de un proyecto completo, de cimiento a acabado, y no solo de un oficio — y es algo que usted mismo puede verificar en menos de un minuto.',
   'st.p4':
-    'Seguimos siendo una compañía familiar, y eso es a propósito. Cuando usted nos llama, contesta uno de los dueños. Cuando le damos un precio, es porque nosotros vamos a hacer el trabajo. Y cuando algo sale mal — porque en construcción a veces sale mal — usted trata con la persona cuyo apellido está en la camioneta.',
-  'st.h5': 'Los tres, un solo apellido en la camioneta',
+    'Seguimos siendo, en esencia, una compañía familiar, y eso es intencional. Cuando usted llama, contesta uno de los dueños. Cuando le damos un precio, es porque nosotros somos quienes van a hacer el trabajo. Y si algo necesita atención en el camino — porque en construcción a veces la necesita — usted habla directamente con la familia cuyo apellido está en la camioneta, no con un centro de llamadas.',
+  'st.h5': 'Una familia en el centro, un equipo en el que puede confiar',
   'st.p5':
-    'No muchas familias tienen esta oportunidad, y no la tomamos a la ligera. Casi todos los días nos va a encontrar a los tres en la misma propiedad — uno dirigiendo al equipo, otro explicándole al cliente lo que sigue, y nuestro papá arreglando en silencio algo que a ninguno se nos había ocurrido. Toda una vida de instinto no se jubila nada más porque sus hijos ya saben leer un plano.',
+    'La mayoría de los días nos va a encontrar en la propiedad — muchas veces a los tres juntos — uno dirigiendo al equipo, otro explicándole al cliente lo que sigue, y nuestro papá, cuyo instinto después de toda una vida en este oficio todavía nota detalles que a nosotros se nos escaparían. A nuestro alrededor hay un equipo con el que hemos trabajado por años, gente de oficio en la que confiamos tanto como en nuestro propio nombre.',
   'st.p6':
-    'Hay un tipo de responsabilidad que solo existe cuando trabaja al lado de su papá y de su hermano. Aquí nadie corta una esquina en silencio. Nadie le habla a un cliente de una manera que le daría pena repetir en la mesa el domingo. El nombre en la camioneta es nuestro apellido, y los tres nos lo llevamos a la casa al final del día.',
+    'Eso es lo que hace diferente a AJ Construction: la responsabilidad de una empresa familiar, junto con la habilidad de un equipo con experiencia que ha construido terrazas, remodelado cocinas, colado concreto e instalado techos juntos, temporada tras temporada. Todos en nuestro equipo mantienen el mismo estándar en el que nos criaron a nosotros.',
   'st.p7':
-    'Estamos orgullosos de eso, y creemos que se nota en el trabajo. Cuando contrata a AJ Construction no está contratando un logotipo — está contratando a un padre y a sus dos hijos, y cada uno de nosotros tiene una razón para hacerle bien su obra.',
+    'Estamos orgullosos de la compañía que hemos construido — orgullosos del nombre en la camioneta, y orgullosos de la gente que se presenta a trabajar bajo él todos los días. Cuando contrata a AJ Construction Inc, obtiene una familia que trata su proyecto de forma personal, y un equipo con la experiencia necesaria para hacerlo bien desde la primera vez.',
   'st.h3': 'Lo que no vamos a hacer',
   'st.li1': 'Darle un número por teléfono sin ver la obra.',
   'st.li2': 'Empezar sin que usted tenga el alcance y el precio por escrito.',
