@@ -65,10 +65,10 @@ export const ES = {
   'trust.4.value': 'Abierto 24/7',
   'trust.4.label': 'Llame a cualquier hora',
 
-  'why.eyebrow': 'Por qué AJ Construction',
-  'why.title': 'Cualquiera da un precio bajo. Pocos terminan la obra.',
+  'why.eyebrow': 'Por Qué Nos Eligen los Dueños de Casa',
+  'why.title': 'Un equipo en el que puede confiar, desde la primera llamada hasta la entrega final.',
   'why.body':
-    'Casi todas las malas experiencias que cuentan los dueños de casa se reducen a lo mismo: un equipo que cambia cada semana, un dueño que desaparece después del anticipo, un precio que se mueve, y una licencia que nadie verificó. Formamos esta compañía para ser exactamente lo contrario.',
+    'Formamos AJ Construction pensando en cómo nos gustaría que un contratista tratara a nuestra propia familia: un solo equipo estable, un plan por escrito antes de empezar, y los dueños presentes en la obra de principio a fin. Esto es lo que eso significa para su proyecto.',
   'why.1.title': 'Un solo equipo, todos los oficios',
   'why.1.body':
     'Nosotros mismos hacemos la estructura, el drywall, el azulejo, los pisos, el concreto y lo eléctrico. Menos manos significa menos retrasos — y una sola compañía responsable de todo.',
@@ -310,13 +310,13 @@ export const ES = {
   'qp.detailsHint':
     'Antigüedad de la casa, qué está fallando, medidas, lo que ya intentó — lo que ayude.',
   'qp.detailsPlaceholder': 'Cuéntenos qué está pasando…',
-  'qp.city': 'Ciudad',
+  'qp.city': 'Ciudad <span class="req">*</span>',
   'qp.cityPlaceholder': 'Placerville',
   'qp.timeline': '¿Cuándo quiere empezar?',
   'qp.budget': 'Rango de presupuesto',
   'qp.budgetHint': 'Solo para orientarnos — no es un compromiso.',
-  'qp.name': 'Nombre completo',
-  'qp.phone': 'Teléfono',
+  'qp.name': 'Nombre completo <span class="req">*</span>',
+  'qp.phone': 'Teléfono <span class="req">*</span>',
   'qp.email': 'Correo electrónico',
   'qp.emailHint': 'Opcional, pero ayuda para mandarle el presupuesto por escrito.',
   'qp.contactPref': '¿Cómo prefiere que lo contactemos?',

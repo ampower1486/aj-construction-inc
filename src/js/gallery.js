@@ -66,14 +66,13 @@ function createLightbox(photos) {
     <button class="lightbox__btn lightbox__next" type="button" aria-label="${t('gal.next')}">${icons.chevronRight}</button>
     <figure class="lightbox__figure">
       <img alt="" decoding="async" hidden>
-      <figcaption class="lightbox__caption"><strong></strong><span></span></figcaption>
+      <figcaption class="lightbox__caption"><strong></strong></figcaption>
     </figure>
     <p class="lightbox__count" aria-live="polite"></p>`;
   document.body.appendChild(el);
 
   const img = el.querySelector('img');
   const title = el.querySelector('.lightbox__caption strong');
-  const caption = el.querySelector('.lightbox__caption span');
   const count = el.querySelector('.lightbox__count');
 
   let order = [];
@@ -85,9 +84,8 @@ function createLightbox(photos) {
     const photo = photos[order[cursor]];
     img.src = src(photo.slug, '.jpg');
     img.hidden = false; // it ships without a src so the page never holds a broken image
-    img.alt = t(photo.captionKey);
+    img.alt = t(photo.captionKey); // not shown on screen — still read by screen readers
     title.textContent = t(photo.titleKey);
-    caption.textContent = t(photo.captionKey);
     count.textContent = `${cursor + 1} / ${order.length}`;
 
     // Preload the neighbour so arrowing through feels instant.
