@@ -4,6 +4,7 @@ dist/
 .env.local
 .DS_Store
 *.log
+.vercel
 
 # Playwright MCP scratch output
 .playwright-mcp/
@@ -15,3 +16,4 @@ verify-shots/
 # The GitHub repo is public, and this folder contains market-rate research and
 # cost breakdowns intended for Conect-R, not for the client or the public.
 docs/
+.env*
