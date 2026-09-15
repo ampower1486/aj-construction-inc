@@ -280,7 +280,7 @@
    that box with overflow instead of altering the image. --logo-h is the height
    of the visible artwork; everything else is derived from it. */
 .brand {
-  --logo-h: 46px;
+  --logo-h: 69px; /* 1.5x the original 46px */
   --logo-u: calc(var(--logo-h) / 771); /* one source pixel, in rendered px */
   display: block;
   width: calc(1612 * var(--logo-u));
@@ -300,7 +300,7 @@
 
 @media (max-width: 900px) {
   .brand {
-    --logo-h: 38px;
+    --logo-h: 57px; /* 1.5x the original 38px */
   }
 }
 

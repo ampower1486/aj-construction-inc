@@ -26,13 +26,16 @@
   cursor: pointer;
 }
 
-/* The clip is 960x960. Keeping the frame square means it is never cropped —
-   `min()` fits it to whichever of height, width or a sensible cap is tightest. */
+/* The clip is 1232x736 (widescreen), shown inside a square frame. `contain`
+   (not `cover`) is required here — `cover` would crop the sides off a
+   non-square source to fill the square, and this clip is not square.
+   `min()` fits the frame to whichever of height, width or a sensible cap is
+   tightest. */
 .hero__reel-video {
   width: min(520px, 56vh, 84vw);
   aspect-ratio: 1;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
   background: #fbfbfb;
   border-radius: var(--r-lg);
   box-shadow: 0 30px 80px rgba(6, 34, 47, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.12);

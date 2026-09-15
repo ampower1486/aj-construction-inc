@@ -381,6 +381,11 @@ console.log('\n=== HERO REEL ===');
         isPlaying: document.querySelector('.hero').classList.contains('is-reel-playing'),
         copyHidden: getComputedStyle(document.getElementById('hero-copy')).opacity === '0',
         square: Math.abs(r.width - r.height) < 2,
+        // The frame being square says nothing about whether the video's own
+        // content is cropped inside it — that's what object-fit controls.
+        // `cover` would silently crop a non-square source; only `contain`
+        // guarantees the whole frame is visible.
+        notCropped: getComputedStyle(v).objectFit === 'contain',
         muted: v.muted,
         advancing: v.currentTime > 0.3,
         headerVisible: document.querySelector('.site-header').getBoundingClientRect().top >= 0,
@@ -390,7 +395,10 @@ console.log('\n=== HERO REEL ===');
     playing.isPlaying ? pass('reel autoplays on first visit') : fail('reel never started');
     playing.advancing ? pass('clip is advancing') : fail('clip loaded but is not playing');
     playing.copyHidden ? pass('hero copy steps aside while it plays') : fail('hero copy still visible during reel');
-    playing.square ? pass('reel frame is square (clip is never cropped)') : fail('reel frame is not square');
+    playing.square ? pass('reel frame is square') : fail('reel frame is not square');
+    playing.notCropped
+      ? pass('clip is never cropped (object-fit: contain)')
+      : fail('clip uses object-fit: cover — a non-square source would be cropped');
     playing.muted ? pass('reel is muted') : fail('reel is NOT muted — autoplay will be blocked');
     playing.headerVisible ? pass('header stays visible — not a modal') : fail('header covered by the reel');
     playing.scrollable ? pass('page stays scrollable during the reel') : fail('page scroll was locked');
