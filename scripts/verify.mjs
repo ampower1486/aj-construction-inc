@@ -152,8 +152,16 @@ console.log('\n=== SPANISH ===');
 
   for (const [name, path] of PAGES) {
     await page.goto(BASE + path, { waitUntil: 'networkidle' });
-    await page.click('[data-lang-btn="es"]');
-    await page.waitForTimeout(250);
+
+    // The toggle is a single button naming whichever language you are NOT
+    // currently reading, so its data-lang-btn target flips once the locale
+    // does. Locale persists across page loads, so pages after the first in
+    // this loop may already be in Spanish — only click if not.
+    const alreadyEs = await page.evaluate(() => document.documentElement.lang === 'es');
+    if (!alreadyEs) {
+      await page.click('.lang-toggle');
+      await page.waitForTimeout(250);
+    }
 
     const result = await page.evaluate(() => {
       const untranslated = [];

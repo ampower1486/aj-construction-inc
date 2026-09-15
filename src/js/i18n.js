@@ -24,6 +24,19 @@ const DICT = { en: EN, es: { ...ES, ...ES_LEGAL } };
 const STORE_KEY = 'aj:lang';
 const SUPPORTED = ['en', 'es'];
 
+/**
+ * The toggle is a single button showing the OTHER language's own name (not a
+ * translation of it) — "Español" while reading English, "English" while
+ * reading Spanish — which is the usual convention, since a Spanish speaker
+ * should recognise their language's name regardless of what language the
+ * rest of the page is currently in. The aria-label is a full sentence in
+ * whichever language the page is currently in, since that's what gets read.
+ */
+const LANG_SWITCH = {
+  en: { target: 'es', name: 'Español', ariaLabel: 'Switch to Spanish' },
+  es: { target: 'en', name: 'English', ariaLabel: 'Cambiar a inglés' },
+};
+
 /** English strings recovered from the DOM at boot. */
 const domEN = Object.create(null);
 
@@ -154,8 +167,11 @@ export function translateTree(root) {
 }
 
 function syncToggles() {
+  const { target, name, ariaLabel } = LANG_SWITCH[locale];
   document.querySelectorAll('[data-lang-btn]').forEach((btn) => {
-    btn.setAttribute('aria-pressed', String(btn.dataset.langBtn === locale));
+    btn.dataset.langBtn = target;
+    btn.textContent = name;
+    btn.setAttribute('aria-label', ariaLabel);
   });
 }
 

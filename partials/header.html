@@ -18,10 +18,10 @@
     </div>
 
     <div class="utility-bar__actions">
-      <div class="lang-toggle" role="group" aria-label="Language / Idioma">
-        <button type="button" data-lang-btn="en" aria-pressed="true">EN</button>
-        <button type="button" data-lang-btn="es" aria-pressed="false">ES</button>
-      </div>
+      <!-- Shows the name of the OTHER language, in that language — i18n.js
+           keeps data-lang-btn, the label and aria-label in sync with the
+           current locale, so this always reads as "switch to X". -->
+      <button type="button" class="lang-toggle" data-lang-btn="es" aria-label="Switch to Spanish">Español</button>
     </div>
   </div>
 </div>

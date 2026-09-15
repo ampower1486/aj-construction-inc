@@ -220,31 +220,27 @@
 
 /* --- Language toggle ----------------------------------------------------- */
 
+/* A single button naming the OTHER language ("Español" while reading
+   English) rather than a two-way EN/ES switch — see i18n.js. */
 .lang-toggle {
-  display: inline-flex;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: var(--r-pill);
-  overflow: hidden;
   flex: none;
-}
-
-.lang-toggle button {
-  padding: 0.2rem 0.66rem;
+  padding: 0.2rem 0.7rem;
   font-size: 0.71rem;
   font-weight: 700;
-  letter-spacing: 0.09em;
-  color: rgba(255, 255, 255, 0.62);
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: var(--r-pill);
   transition: background-color var(--t-fast) var(--ease-out),
-    color var(--t-fast) var(--ease-out);
+    color var(--t-fast) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out);
 }
 
-.lang-toggle button[aria-pressed='true'] {
-  background: var(--brick-600);
-  color: #fff;
-}
-
-.lang-toggle button:hover[aria-pressed='false'] {
-  color: #fff;
+.lang-toggle:hover {
+  color: var(--navy-900);
+  background: #fff;
+  border-color: #fff;
 }
 
 
