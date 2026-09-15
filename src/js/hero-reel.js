@@ -6,35 +6,17 @@
  * replay control repeats the cycle on demand. The header, the nav and the rest
  * of the page are never covered — this deliberately is not a modal.
  *
- * Autoplay happens once per visitor. After that the hero is immediate and the
- * clip is opt-in, because a returning customer looking for a phone number
- * should not have to wait ten seconds for it.
- * (To autoplay every time instead, drop the `hasSeen()` check in shouldAutoplay.)
+ * Autoplay happens on every visit — first-time or returning — and plays
+ * through once. After it ends (or is dismissed) the clip is opt-in via the
+ * replay button until the next visit.
  *
  * Guiding rule, same as everywhere else here: the copy must always come back.
  * Missing file, refused autoplay, stalled buffer, decode error — every failure
  * path ends with the hero readable.
  */
 
-const SEEN_KEY = 'aj:reel-seen';
 const START_TIMEOUT = 5000; // playback must actually begin within this
 const STALL_TIMEOUT = 4000; // ...and must not freeze for this long
-
-function hasSeen() {
-  try {
-    return !!localStorage.getItem(SEEN_KEY);
-  } catch {
-    return true; // storage blocked — treat as seen so the hero is never withheld
-  }
-}
-
-function markSeen() {
-  try {
-    localStorage.setItem(SEEN_KEY, '1');
-  } catch {
-    /* non-fatal */
-  }
-}
 
 function autoplayAllowed() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
@@ -43,7 +25,7 @@ function autoplayAllowed() {
   if (conn?.saveData) return false;
   if (conn?.effectiveType && /(^|-)2g$/.test(conn.effectiveType)) return false;
 
-  return !hasSeen();
+  return true;
 }
 
 export function initHeroReel() {
@@ -101,7 +83,6 @@ export function initHeroReel() {
   function start({ userInitiated = false } = {}) {
     if (running) return;
     running = true;
-    markSeen();
 
     hero.classList.add('is-reel-playing');
     video.preload = 'auto';

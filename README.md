@@ -177,8 +177,7 @@ no inline script, no request. The hero reverts to the photo.
 
 | | |
 |---|---|
-| Autoplay | Once per visitor (`aj:reel-seen` in `localStorage`) |
-| Returning visitor | Headline immediately; clip only on demand, never downloaded |
+| Autoplay | Every visit — first-time and returning — plays through once |
 | Replay | Button under the proof row; click the reel or press Esc to end early |
 | Reduced motion | Never autoplays, never downloaded — replay still works |
 | Save-Data / 2G | Same |
@@ -188,22 +187,27 @@ no inline script, no request. The hero reverts to the photo.
 That last row is the one that matters: **the hero copy must always come back.**
 Every failure path restores it.
 
-To autoplay on *every* visit instead, drop the `hasSeen()` check in
-`autoplayAllowed()` in `src/js/hero-reel.js`.
+To autoplay only once per visitor instead, add back a `localStorage` "seen"
+flag, checked in `autoplayAllowed()` in `src/js/hero-reel.js` and in the
+inline pre-paint script in `index.html`'s `<!--#reel-start-->` block (both
+need it — the inline script is what hides the headline before first paint,
+before `main.js` has even loaded).
 
 ### The clip currently in place
 
 | | |
 |---|---|
-| Dimensions | 960 × 960 (square) |
+| Dimensions | 1232 × 736 (widescreen) |
 | Length | 10.0s |
-| Size | 6.2 MB |
+| Size | 9.1 MB |
 | Faststart | yes — playback starts while it downloads |
 | Audio | present, but force-muted on playback |
 
-The reel frame is kept **square** so the clip is never cropped — `min(520px,
-56vh, 84vw)` fits it to whichever dimension is tightest. Its own near-white
-background reads as a deliberate card against the darkened hero photo.
+The reel frame is kept **square** — `min(520px, 56vh, 84vw)` fits it to
+whichever dimension is tightest — but the clip itself is not, so it is shown
+with `object-fit: contain`, never `cover`, or a widescreen source would be
+cropped at the sides to fill the square. Its own near-white background reads
+as a deliberate card against the darkened hero photo.
 
 ### Replacing it
 

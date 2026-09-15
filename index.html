@@ -25,11 +25,6 @@
   </style>
   <script>
     (function () {
-      try {
-        if (localStorage.getItem('aj:reel-seen')) return;
-      } catch (e) {
-        return; // storage blocked — never withhold the headline
-      }
       if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var c = navigator.connection;
       if (c && (c.saveData || /(^|-)2g$/.test(c.effectiveType || ''))) return;

@@ -45,23 +45,18 @@ mkdirSync(SHOTS, { recursive: true });
 const browser = await chromium.launch({ channel: 'chrome' });
 
 /**
- * A context that has already "seen" the hero reel.
+ * A context where the hero reel never autoplays.
  *
- * While the reel plays it covers the middle of the hero, so any test that
- * clicks or hit-tests there would be measuring the reel instead of the site.
- * Every section except the reel's own uses this and starts as a returning
- * visitor. The reel section deliberately uses a raw context.
+ * The reel now autoplays on every visit (not just the first), so any test
+ * that clicks or hit-tests the middle of the hero needs it suppressed or it
+ * would be measuring the reel instead of the site. reducedMotion is one of
+ * autoplayAllowed()'s own real guards (an accessibility requirement, not a
+ * test hook), so this rides that instead of anything reel-specific. Every
+ * section except the reel's own uses this. The reel section deliberately
+ * uses a raw context.
  */
 async function newCtx(opts) {
-  const ctx = await browser.newContext(opts);
-  await ctx.addInitScript(() => {
-    try {
-      localStorage.setItem('aj:reel-seen', '1');
-    } catch {
-      /* storage blocked — the reel simply autoplays */
-    }
-  });
-  return ctx;
+  return browser.newContext({ reducedMotion: 'reduce', ...opts });
 }
 
 /* ------------------------------------------------------------------ *
@@ -413,21 +408,30 @@ console.log('\n=== HERO REEL ===');
     await page.goto(BASE + '/', { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(600);
 
-    // Returning visitor: hero immediately, nothing downloaded.
-    const vidReqs = [];
-    page.on('request', (r) => {
-      if (/intro\.(mp4|webm)/.test(r.url())) vidReqs.push(r.url());
-    });
-    await page.reload({ waitUntil: 'networkidle' });
-    await page.waitForTimeout(1000);
-    const ret = await page.evaluate(() => ({
-      copyVisible: getComputedStyle(document.getElementById('hero-copy')).opacity === '1',
-      notPlaying: !document.querySelector('.hero').classList.contains('is-reel-playing'),
+    // Reloading is a fresh visit as far as the reel is concerned — it plays
+    // again every time, not just the first. No "seen" flag is kept anywhere.
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForTimeout(2200);
+    const reloaded = await page.evaluate(() => ({
+      playing: document.querySelector('.hero').classList.contains('is-reel-playing'),
+      copyHidden: getComputedStyle(document.getElementById('hero-copy')).opacity === '0',
+      time: document.querySelector('.hero__reel-video').currentTime,
     }));
-    ret.copyVisible && ret.notPlaying
-      ? pass('returning visitor gets the headline immediately')
-      : fail('reel replayed for a returning visitor');
-    vidReqs.length === 0 ? pass('returning visitor downloads no video') : fail('video re-downloaded');
+    reloaded.playing && reloaded.copyHidden && reloaded.time > 0.3
+      ? pass('reel autoplays again on a returning visit (reload)')
+      : fail(`reel did not autoplay on reload: ${JSON.stringify(reloaded)}`);
+
+    // Clicking the reel ends it early and restores the hero — also clears
+    // the way to test replay without waiting out the full ~10s clip.
+    await page.click('#hero-reel', { position: { x: 640, y: 300 } });
+    await page.waitForTimeout(900);
+    const dismissed = await page.evaluate(() => ({
+      stopped: !document.querySelector('.hero').classList.contains('is-reel-playing'),
+      copyVisible: getComputedStyle(document.getElementById('hero-copy')).opacity === '1',
+    }));
+    dismissed.stopped && dismissed.copyVisible
+      ? pass('clicking the reel ends it and restores the hero')
+      : fail(`dismiss failed: ${JSON.stringify(dismissed)}`);
 
     // Replay restarts the cycle.
     await page.click('#hero-replay');
@@ -441,16 +445,6 @@ console.log('\n=== HERO REEL ===');
       ? pass('replay button restarts the cycle')
       : fail(`replay did not restart: ${JSON.stringify(replayed)}`);
 
-    // Clicking the reel ends it early and restores the hero.
-    await page.click('#hero-reel', { position: { x: 640, y: 300 } });
-    await page.waitForTimeout(900);
-    const dismissed = await page.evaluate(() => ({
-      stopped: !document.querySelector('.hero').classList.contains('is-reel-playing'),
-      copyVisible: getComputedStyle(document.getElementById('hero-copy')).opacity === '1',
-    }));
-    dismissed.stopped && dismissed.copyVisible
-      ? pass('clicking the reel ends it and restores the hero')
-      : fail(`dismiss failed: ${JSON.stringify(dismissed)}`);
     await ctx.close();
 
     // Reduced motion: no autoplay, no download, hero readable.
