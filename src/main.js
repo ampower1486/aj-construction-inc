@@ -17,6 +17,7 @@ import { initHeroReel } from './js/hero-reel.js';
 import { initNav } from './js/nav.js';
 import { initReveal } from './js/reveal.js';
 import { initGallery, initVideos } from './js/gallery.js';
+import { initFeatureList } from './js/feature-list.js';
 import { initQuoteForm } from './js/quote-form.js';
 import { initChat } from './js/chat/chat-ui.js';
 
@@ -32,6 +33,7 @@ function boot() {
   initReveal();
   initGallery();
   initVideos();
+  initFeatureList();
   initQuoteForm();
 
   // The assistant is the heaviest piece and never blocks first paint.

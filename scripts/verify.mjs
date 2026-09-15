@@ -486,6 +486,63 @@ console.log('\n=== HERO REEL ===');
 }
 
 /* ------------------------------------------------------------------ *
+ * 2b. Feature list ("Why AJ Construction") — collapsible on phones only
+ * ------------------------------------------------------------------ */
+console.log('\n=== FEATURE LIST ===');
+{
+  // Phone width: closed by default, independently togglable.
+  const mobile = await newCtx({ viewport: { width: 390, height: 844 } });
+  const mp = await mobile.newPage();
+  await mp.goto(BASE + '/', { waitUntil: 'networkidle' });
+  await mp.waitForTimeout(300);
+
+  const closedByDefault = await mp.evaluate(() =>
+    [...document.querySelectorAll('.feature-list__details')].every((d) => !d.open)
+  );
+  closedByDefault
+    ? pass('mobile: points are collapsed by default')
+    : fail('mobile: a point was open on load — should be collapsed');
+
+  await mp.click('.feature-list__details summary');
+  await mp.waitForTimeout(150);
+  const oneOpened = await mp.evaluate(
+    () => document.querySelectorAll('.feature-list__details[open]').length
+  );
+  oneOpened === 1
+    ? pass('mobile: tapping a point opens just that one')
+    : fail(`mobile: expected 1 open point, got ${oneOpened}`);
+
+  await mobile.close();
+
+  // Desktop width: forced open, not togglable.
+  const desktop = await newCtx({ viewport: { width: 1280, height: 900 } });
+  const dp = await desktop.newPage();
+  await dp.goto(BASE + '/', { waitUntil: 'networkidle' });
+  await dp.waitForTimeout(300);
+
+  const allOpenDesktop = await dp.evaluate(() =>
+    [...document.querySelectorAll('.feature-list__details')].every((d) => d.open)
+  );
+  allOpenDesktop
+    ? pass('desktop: all points are open (unchanged from before)')
+    : fail('desktop: a point was collapsed — desktop should show everything');
+
+  // pointer-events:none makes this unclickable to a real mouse — force it to
+  // simulate what a keyboard Enter/Space toggle would still trigger, and
+  // confirm the JS 'toggle' listener immediately reopens it either way.
+  await dp.click('.feature-list__details summary', { force: true });
+  await dp.waitForTimeout(150);
+  const stillAllOpen = await dp.evaluate(() =>
+    [...document.querySelectorAll('.feature-list__details')].every((d) => d.open)
+  );
+  stillAllOpen
+    ? pass('desktop: toggling a summary snaps back open')
+    : fail('desktop: a summary stayed collapsed — should be forced open at this width');
+
+  await desktop.close();
+}
+
+/* ------------------------------------------------------------------ *
  * 3. The assistant — three branches
  * ------------------------------------------------------------------ */
 console.log('\n=== ASSISTANT ===');
