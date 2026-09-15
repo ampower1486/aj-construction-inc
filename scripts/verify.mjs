@@ -543,6 +543,40 @@ console.log('\n=== FEATURE LIST ===');
 }
 
 /* ------------------------------------------------------------------ *
+ * 2c. Process steps ("Four steps, no mystery") — same shared behaviour,
+ *     on both the pages that carry it.
+ * ------------------------------------------------------------------ */
+console.log('\n=== PROCESS STEPS ===');
+for (const [name, path] of [
+  ['home', '/'],
+  ['story', '/story.html'],
+]) {
+  const mobile = await newCtx({ viewport: { width: 390, height: 844 } });
+  const mp = await mobile.newPage();
+  await mp.goto(BASE + path, { waitUntil: 'networkidle' });
+  await mp.waitForTimeout(300);
+  const closedByDefault = await mp.evaluate(() =>
+    [...document.querySelectorAll('.process__step-details')].every((d) => !d.open)
+  );
+  closedByDefault
+    ? pass(`${name} @ mobile: steps are collapsed by default`)
+    : fail(`${name} @ mobile: a step was open on load — should be collapsed`);
+  await mobile.close();
+
+  const desktop = await newCtx({ viewport: { width: 1280, height: 900 } });
+  const dp = await desktop.newPage();
+  await dp.goto(BASE + path, { waitUntil: 'networkidle' });
+  await dp.waitForTimeout(300);
+  const allOpenDesktop = await dp.evaluate(() =>
+    [...document.querySelectorAll('.process__step-details')].every((d) => d.open)
+  );
+  allOpenDesktop
+    ? pass(`${name} @ desktop: all steps are open (unchanged from before)`)
+    : fail(`${name} @ desktop: a step was collapsed — desktop should show everything`);
+  await desktop.close();
+}
+
+/* ------------------------------------------------------------------ *
  * 3. The assistant — three branches
  * ------------------------------------------------------------------ */
 console.log('\n=== ASSISTANT ===');

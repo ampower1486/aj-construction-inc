@@ -1,17 +1,19 @@
 /**
- * Feature list (the "Why AJ Construction" points on the home page).
+ * "Collapsed on phones, always open on tablet/desktop" behaviour, shared by
+ * every block marked .mobile-collapse — currently the home page's "Why AJ
+ * Construction" points and the "Four steps, no mystery" process steps.
  *
- * Each point is a native <details>/<summary> so it works — collapsed, tap to
- * read — with zero JS. On tablet/desktop there is no scroll-length problem
- * (the list sits beside the photo, not stacked under it), so this keeps every
- * <details> forced open there, matching how the section always looked before
+ * Each is a native <details>/<summary> so it works — collapsed, tap to read —
+ * with zero JS. On tablet/desktop there is no scroll-length problem (these
+ * blocks run in columns, not stacked full-width), so this keeps every
+ * <details> forced open there, matching how they always looked before any of
  * this became collapsible on phones.
  */
 
 const BREAKPOINT = 900;
 
-export function initFeatureList() {
-  const items = document.querySelectorAll('.feature-list__details');
+export function initCollapsibleDetails() {
+  const items = document.querySelectorAll('.mobile-collapse');
   if (!items.length) return;
 
   const mq = window.matchMedia(`(min-width: ${BREAKPOINT + 1}px)`);

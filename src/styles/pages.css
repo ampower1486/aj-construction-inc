@@ -372,11 +372,14 @@
   margin: 0.4rem 0 0;
 }
 
-/* On phones this list is the tallest thing on the page, so each item collapses
-   to just its title until tapped. On tablet/desktop, feature-list.js forces
-   every <details> open (see the JS) so nothing changes from before — this is
-   a mobile-only compaction, not a content change. */
-.feature-list__details summary {
+/* Shared "collapsed on phones, always open on tablet/desktop" treatment —
+   used by this list and by the process steps below. On a phone, whichever
+   block this is on is the tallest thing on the page once every item is fully
+   expanded, so each item collapses to just its title until tapped. On
+   tablet/desktop, collapsible-details.js forces every <details> open (see the
+   JS) so nothing changes from before — this is a mobile-only compaction, not
+   a content change. */
+.mobile-collapse summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -386,11 +389,11 @@
   cursor: pointer;
 }
 
-.feature-list__details summary::-webkit-details-marker {
+.mobile-collapse summary::-webkit-details-marker {
   display: none;
 }
 
-.feature-list__details summary::after {
+.mobile-collapse summary::after {
   content: '';
   flex: none;
   width: 9px;
@@ -402,20 +405,20 @@
   transition: transform var(--t-fast) var(--ease-out);
 }
 
-.feature-list__details[open] summary::after {
+.mobile-collapse[open] summary::after {
   transform: rotate(-135deg);
   margin-top: 3px;
 }
 
 @media (min-width: 901px) {
-  /* feature-list.js keeps these permanently open at this width, so the
-     toggle affordance would be a dead control — hide it. */
-  .feature-list__details summary {
+  /* collapsible-details.js keeps these permanently open at this width, so
+     the toggle affordance would be a dead control — hide it. */
+  .mobile-collapse summary {
     cursor: default;
     pointer-events: none;
   }
 
-  .feature-list__details summary::after {
+  .mobile-collapse summary::after {
     display: none;
   }
 }
@@ -470,6 +473,24 @@
   display: none;
 }
 
+/* The big step-number badge sits outside the collapsible <details>, so it
+   doesn't shrink when a step collapses — it needs its own mobile size, or it
+   stays the tallest part of an otherwise-compact step. */
+@media (max-width: 900px) {
+  .process {
+    gap: var(--space-sm);
+  }
+
+  .process__step {
+    padding-top: var(--space-sm);
+  }
+
+  .process__step::before {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+}
+
 @media (max-width: 760px) {
   .process__step::after {
     display: none;
@@ -478,13 +499,13 @@
 
 .process__step h3 {
   font-size: var(--step-1);
-  margin-bottom: 0.4rem;
 }
 
 .process__step p {
   font-size: 0.92rem;
   line-height: 1.6;
   color: var(--text-muted);
+  margin: 0.4rem 0 0;
 }
 
 .section--dark .process__step::before {
@@ -501,6 +522,11 @@
     rgba(255, 255, 255, 0.22) 0 7px,
     transparent 7px 14px
   );
+}
+
+.section--dark .mobile-collapse summary::after {
+  border-right-color: rgba(255, 255, 255, 0.7);
+  border-bottom-color: rgba(255, 255, 255, 0.7);
 }
 
 /* --- CTA band ------------------------------------------------------------ */
