@@ -256,13 +256,13 @@ The scripted engine stays as the fallback for when the API is down.
 
 ## The logo
 
-`assets-src/logo/aj-logo.jpg` is the supplied file, used **byte-for-byte and never edited**.
-It is copied straight to `public/assets/logo/aj-logo.jpg` by `npm run assets`.
+`assets-src/logo/aj-logo.png` is the supplied file, used **byte-for-byte and never edited**.
+It is copied straight to `public/assets/logo/aj-logo.png` by `npm run assets`.
 
 Because the file has a white background and a wide white margin, the header crops to the
 artwork with CSS `overflow` rather than by altering the image — see the `.brand` rule in
 `src/styles/components.css`, which derives everything from the measured content box
-(x 84–943, y 268–774 of the 1024×1024 canvas).
+(x 114–1725, y 166–936 of the 1808×1088 canvas).
 
 `aj-logo-mark.png` is a *derived* file — the same artwork with the outer white flood-filled
 to transparent — used **only** on the dark footer, where a white box would be visible. The

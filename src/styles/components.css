@@ -106,6 +106,7 @@
 .btn-row {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: var(--space-sm);
 }
 
@@ -272,17 +273,17 @@
   min-height: var(--header-h);
 }
 
-/* The logo is the supplied JPEG, used byte-for-byte. Because it sits on a white
+/* The logo is the supplied PNG, used byte-for-byte. Because it sits on a white
    bar its original white background is invisible, so no editing is needed.
    The file carries a wide white margin around the artwork (the graphic occupies
-   x 84–943, y 268–774 of the 1024x1024 canvas), so the anchor crops to exactly
+   x 114–1725, y 166–936 of the 1808x1088 canvas), so the anchor crops to exactly
    that box with overflow instead of altering the image. --logo-h is the height
    of the visible artwork; everything else is derived from it. */
 .brand {
   --logo-h: 46px;
-  --logo-u: calc(var(--logo-h) / 507); /* one source pixel, in rendered px */
+  --logo-u: calc(var(--logo-h) / 771); /* one source pixel, in rendered px */
   display: block;
-  width: calc(860 * var(--logo-u));
+  width: calc(1612 * var(--logo-u));
   height: var(--logo-h);
   overflow: hidden;
   flex: none;
@@ -291,10 +292,10 @@
 }
 
 .brand img {
-  width: calc(1024 * var(--logo-u));
-  height: calc(1024 * var(--logo-u));
+  width: calc(1808 * var(--logo-u));
+  height: calc(1088 * var(--logo-u));
   max-width: none;
-  margin: calc(-268 * var(--logo-u)) 0 0 calc(-84 * var(--logo-u));
+  margin: calc(-166 * var(--logo-u)) 0 0 calc(-114 * var(--logo-u));
 }
 
 @media (max-width: 900px) {
@@ -764,7 +765,7 @@
 
 /* The dark footer has no white surface of its own, so the untouched master
    logo sits on a small white plate — same crop math as the header's .brand
-   (the artwork occupies x84-943, y268-774 of the 1024x1024 source), just
+   (the artwork occupies x114-1725, y166-936 of the 1808x1088 source), just
    larger and with breathing room, so it reads in full colour and full detail
    instead of the flattened white silhouette this used to be. */
 .footer-brand__logo-plate {
@@ -777,18 +778,18 @@
 
 .footer-brand__logo-crop {
   --logo-h: 60px;
-  --logo-u: calc(var(--logo-h) / 507);
+  --logo-u: calc(var(--logo-h) / 771);
   display: block;
-  width: calc(860 * var(--logo-u));
+  width: calc(1612 * var(--logo-u));
   height: var(--logo-h);
   overflow: hidden;
 }
 
 .footer-brand__logo {
-  width: calc(1024 * var(--logo-u));
-  height: calc(1024 * var(--logo-u));
+  width: calc(1808 * var(--logo-u));
+  height: calc(1088 * var(--logo-u));
   max-width: none;
-  margin: calc(-268 * var(--logo-u)) 0 0 calc(-84 * var(--logo-u));
+  margin: calc(-166 * var(--logo-u)) 0 0 calc(-114 * var(--logo-u));
 }
 
 .footer-brand p {

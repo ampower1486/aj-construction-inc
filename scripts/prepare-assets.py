@@ -10,7 +10,7 @@ Writes  public/assets/gallery/     (webp + jpg, full + thumb)
         public/assets/logo/        (master logo, transparent footer mark, favicons)
         public/assets/og/          (social share card)
 
-The master logo (assets-src/logo/aj-logo.jpg) is copied byte-for-byte and is
+The master logo (assets-src/logo/aj-logo.png) is copied byte-for-byte and is
 never edited. The transparent mark is a SEPARATE derived file used only where
 the logo sits on a dark surface.
 
@@ -156,10 +156,10 @@ def trim(im, pad=8):
 
 
 def build_logo():
-    master_src = os.path.join(SRC_LOGO, "aj-logo.jpg")
-    master_dst = os.path.join(OUT_LOGO, "aj-logo.jpg")
+    master_src = os.path.join(SRC_LOGO, "aj-logo.png")
+    master_dst = os.path.join(OUT_LOGO, "aj-logo.png")
     shutil.copyfile(master_src, master_dst)  # byte-for-byte, never edited
-    print("  aj-logo.jpg                 copied unmodified (master)")
+    print("  aj-logo.png                 copied unmodified (master)")
 
     logo = Image.open(master_src)
 
@@ -178,9 +178,10 @@ def build_logo():
 def build_favicons(mark):
     """
     Favicons need to read at 32px, where the full wordmark turns to mush. Use the
-    logo's roofline mark on navy: the top ~58% of the graphic, above the type.
+    logo's pictorial mark on navy: the top ~75% of the graphic, above the type
+    (the underline bar sits at roughly 75% of the trimmed mark's height).
     """
-    src = mark.crop((0, 0, mark.width, int(mark.height * 0.58)))
+    src = mark.crop((0, 0, mark.width, int(mark.height * 0.75)))
 
     for size in (16, 32, 48, 180, 192, 512):
         canvas = Image.new("RGBA", (size, size), NAVY + (255,))

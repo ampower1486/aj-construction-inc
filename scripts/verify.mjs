@@ -832,7 +832,7 @@ console.log('\n=== FOOTER & LOGO ===');
       natural: `${img.naturalWidth}x${img.naturalHeight}`,
     };
   });
-  logo.src === '/assets/logo/aj-logo.jpg' && logo.natural === '1024x1024'
+  logo.src === '/assets/logo/aj-logo.png' && logo.natural === '1808x1088'
     ? pass(`header uses the unmodified master (${logo.natural}), cropped to ${Math.round(logo.boxW)}x${Math.round(logo.boxH)}`)
     : fail(`header logo wrong: ${JSON.stringify(logo)}`);
 
