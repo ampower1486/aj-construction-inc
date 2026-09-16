@@ -44,14 +44,19 @@ let locale = 'en';
 const listeners = new Set();
 
 function detectInitial() {
+  // English is always the default first impression, regardless of the
+  // visitor's browser/device language — the toggle is the only way to see
+  // Spanish. Once someone has actually chosen Spanish via the toggle, that
+  // explicit choice is remembered for their next visit; this only removes
+  // the automatic guess from navigator.language on a visitor's first-ever
+  // page load.
   try {
     const saved = localStorage.getItem(STORE_KEY);
     if (SUPPORTED.includes(saved)) return saved;
   } catch {
-    /* private browsing — fall through to the browser preference */
+    /* private browsing — fall through to English */
   }
-  const nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
-  return nav === 'es' ? 'es' : 'en';
+  return 'en';
 }
 
 function parseAttrSpec(spec) {
