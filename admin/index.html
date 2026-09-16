@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Staff Portal | AJ Construction Inc</title>
+  <script type="module" src="/src/js/admin/dashboard-page.js"></script>
+</head>
+<body data-portal="dashboard">
+  <header class="portal-topbar">
+    <span class="portal-topbar__brand">
+      <span class="portal-topbar__logo-plate">
+        <span class="portal-logo"><img src="/assets/logo/aj-logo.png" alt="AJ Construction Inc" width="1808" height="1088" /></span>
+      </span>
+      Staff Portal
+    </span>
+    <div class="portal-topbar__who">
+      <span id="who-name">Loading…</span>
+      <span class="portal-topbar__role" id="who-role" hidden></span>
+      <button class="portal-btn portal-btn--ghost portal-btn--sm" type="button" id="sign-out">Sign Out</button>
+    </div>
+  </header>
+
+  <main class="portal-main">
+    <section class="portal-section">
+      <h2>Overview</h2>
+      <div class="portal-cards">
+        <div class="portal-card portal-card--placeholder">
+          <h3>Estimates</h3>
+          <p>Coming soon — this is where estimates will be created and tracked.</p>
+        </div>
+        <div class="portal-card portal-card--placeholder">
+          <h3>Contracts</h3>
+          <p>Coming soon — premade contracts staff can fill out and send to customers.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="portal-section" id="team-section" hidden>
+      <h2>Team</h2>
+      <div id="form-status" hidden></div>
+      <table class="portal-table">
+        <thead>
+          <tr><th>Name</th><th>Role</th><th>Added</th></tr>
+        </thead>
+        <tbody id="team-rows"></tbody>
+      </table>
+
+      <form id="invite-form" class="portal-invite-form" novalidate>
+        <div class="portal-field">
+          <label for="invite-name">Full name</label>
+          <input id="invite-name" name="fullName" type="text" required />
+        </div>
+        <div class="portal-field">
+          <label for="invite-email">Email</label>
+          <input id="invite-email" name="email" type="email" required />
+        </div>
+        <div class="portal-field">
+          <label for="invite-role">Role</label>
+          <select id="invite-role" name="role" required>
+            <option value="admin">Admin</option>
+            <option value="super_admin">Super Admin</option>
+          </select>
+        </div>
+        <button class="portal-btn" type="submit" data-submit>Send Invite</button>
+      </form>
+    </section>
+
+    <p class="portal-footer portal-footer--light">AJ Construction Inc &middot; CSLB #1129358 &middot; Internal system</p>
+  </main>
+</body>
+</html>

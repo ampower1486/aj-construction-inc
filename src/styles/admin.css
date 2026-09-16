@@ -1,0 +1,396 @@
+/* ==========================================================================
+   Staff portal (/admin/*) — a small, separate set of styles.
+   Reuses tokens.css + base.css for brand colors/type/reset, but none of the
+   public marketing site's components — this is an internal tool, not a page
+   a customer will ever see.
+   ========================================================================== */
+
+body[data-portal] {
+  min-height: 100vh;
+  background: var(--bg-tint);
+}
+
+/* --- Centered single-card layout: login, accept-invite, forgot-password ---
+   A deliberately more "secure system" backdrop than the rest of the site —
+   a dark navy field instead of the marketing pages' white/paper background —
+   so this reads immediately as a distinct, official, internal tool. */
+
+.portal-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  min-height: 100vh;
+  padding: var(--space-lg) var(--gutter);
+  background:
+    radial-gradient(1100px 620px at 50% -10%, rgba(66, 150, 192, 0.16), transparent 60%),
+    var(--navy-950);
+}
+
+.portal-card {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  padding: var(--space-xl) var(--space-lg) var(--space-lg);
+  background: var(--white);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+}
+
+/* A quiet brand accent line, same device used on the public site's cards. */
+.portal-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--navy-800), var(--sky-500) 50%, var(--brick-600));
+}
+
+/* The real logo, cropped with the same measured content box as the header's
+   .brand (source canvas 1808x1088, visible artwork at x114-1725 y166-936) —
+   see src/styles/components.css for the full explanation of this technique. */
+.portal-logo {
+  --logo-h: 40px;
+  --logo-u: calc(var(--logo-h) / 771);
+  display: block;
+  width: calc(1612 * var(--logo-u));
+  height: var(--logo-h);
+  margin: 0 auto var(--space-md);
+  overflow: hidden;
+}
+
+.portal-logo img {
+  width: calc(1808 * var(--logo-u));
+  height: calc(1088 * var(--logo-u));
+  max-width: none;
+  margin: calc(-166 * var(--logo-u)) 0 0 calc(-114 * var(--logo-u));
+}
+
+.portal-card h1 {
+  margin-bottom: var(--space-2xs);
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  color: var(--navy-900);
+  text-align: center;
+}
+
+.portal-card__lede {
+  margin-bottom: var(--space-lg);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+  text-align: center;
+}
+
+.portal-footer {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: var(--step--1);
+  text-align: center;
+}
+
+.portal-footer--light {
+  margin-top: var(--space-xl);
+  color: var(--text-muted);
+}
+
+/* --- Form basics --- */
+
+.portal-field {
+  margin-bottom: var(--space-md);
+}
+
+.portal-field label {
+  display: block;
+  margin-bottom: var(--space-2xs);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.portal-field input,
+.portal-field select {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+  font-size: var(--step-0);
+  color: var(--text);
+  background: var(--white);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+}
+
+.portal-field input:focus,
+.portal-field select:focus {
+  outline: 2px solid var(--sky-400);
+  outline-offset: 1px;
+}
+
+/* --- Password show/hide --- */
+
+.portal-field__input-wrap {
+  position: relative;
+}
+
+.portal-field__input-wrap input {
+  padding-right: 2.6rem;
+}
+
+.portal-field__toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  padding: 0;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.portal-field__toggle:hover {
+  color: var(--navy-800);
+}
+
+.portal-field__toggle svg {
+  width: 19px;
+  height: 19px;
+}
+
+.portal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  font: inherit;
+  font-weight: 600;
+  font-size: var(--step-0);
+  color: #fff;
+  background: var(--navy-800);
+  border: none;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: background-color var(--t-fast) var(--ease-out);
+}
+
+.portal-btn:hover {
+  background: var(--navy-700);
+}
+
+.portal-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.portal-btn--sm {
+  width: auto;
+  padding: 0.5rem 0.9rem;
+  font-size: var(--step--1);
+}
+
+.portal-btn--ghost {
+  color: var(--navy-800);
+  background: transparent;
+  border: 1px solid var(--border-strong);
+}
+
+.portal-btn--ghost:hover {
+  background: var(--paper);
+}
+
+.portal-link-row {
+  margin-top: var(--space-sm);
+  text-align: center;
+}
+
+.portal-link {
+  font-size: var(--step--1);
+  color: var(--steel-600);
+  text-decoration: none;
+}
+
+.portal-link:hover {
+  text-decoration: underline;
+}
+
+.portal-alert {
+  margin-bottom: var(--space-md);
+  padding: 0.75rem 0.95rem;
+  font-size: var(--step--1);
+  border-radius: var(--r-sm);
+}
+
+.portal-alert--error {
+  color: var(--danger);
+  background: var(--brick-100);
+}
+
+.portal-alert--success {
+  color: var(--success);
+  background: #e3f3ea;
+}
+
+/* --- Dashboard shell --- */
+
+.portal-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-xs) var(--gutter);
+  background: var(--navy-900);
+  color: var(--text-on-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+.portal-topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 600;
+}
+
+/* Dark bar, white plate — same device as the public footer's logo, since the
+   logo's own background is baked-in white. */
+.portal-topbar__logo-plate {
+  display: inline-flex;
+  padding: 8px 10px;
+  background: #fff;
+  border-radius: var(--r-sm);
+}
+
+.portal-topbar__logo-plate .portal-logo {
+  --logo-h: 22px;
+  margin: 0;
+}
+
+.portal-topbar__who {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--step--1);
+  color: var(--text-on-dark-muted);
+}
+
+/* .portal-btn--ghost is styled for a white card (navy text on transparent) —
+   on this dark bar that would be navy-on-navy, so restate it light here. */
+.portal-topbar .portal-btn--ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.portal-topbar .portal-btn--ghost:hover {
+  color: var(--navy-900);
+  background: #fff;
+}
+
+.portal-topbar__role {
+  padding: 0.15rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy-900);
+  background: var(--sky-200);
+  border-radius: var(--r-pill);
+}
+
+.portal-main {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--gutter);
+}
+
+.portal-section {
+  margin-bottom: var(--space-xl);
+}
+
+.portal-section h2 {
+  margin-bottom: var(--space-sm);
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  color: var(--navy-900);
+}
+
+.portal-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-md);
+}
+
+.portal-card--placeholder {
+  max-width: none;
+  padding: var(--space-lg);
+  text-align: left;
+  color: var(--text-muted);
+  border: 1px dashed var(--border-strong);
+  box-shadow: none;
+}
+
+.portal-card--placeholder::before {
+  display: none;
+}
+
+.portal-card--placeholder h3 {
+  margin-bottom: var(--space-2xs);
+  color: var(--navy-900);
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+}
+
+/* --- Team table --- */
+
+.portal-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.portal-table th,
+.portal-table td {
+  padding: 0.75rem var(--space-sm);
+  font-size: var(--step--1);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.portal-table th {
+  color: var(--text-muted);
+  font-weight: 600;
+  background: var(--paper);
+}
+
+.portal-table tr:last-child td {
+  border-bottom: none;
+}
+
+.portal-invite-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.portal-invite-form .portal-field {
+  margin-bottom: 0;
+  flex: 1 1 200px;
+}
+
+.portal-invite-form .portal-btn {
+  width: auto;
+  flex: none;
+}
