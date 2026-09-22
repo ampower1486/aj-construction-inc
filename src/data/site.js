@@ -68,7 +68,7 @@ export const SITE = {
    */
   formEndpoint: import.meta.env?.VITE_FORM_ENDPOINT || '',
 
-  url: 'https://ajconstructioninc.com',
+  url: 'https://ajconstructionplacerville.com',
 };
 
 export const YEARS_EXPERIENCE = 13;
